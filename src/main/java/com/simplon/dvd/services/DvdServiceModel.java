@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class DvdServiceModel {
-    private Long id = null;
+    private Long id;
     private String isan;
     private String title;
     private int releaseDate;
@@ -38,6 +38,19 @@ public class DvdServiceModel {
         this.type = dvd.getType();
     }
     public DvdServiceModel(DvdDTO dvd) {
+        this.isan = dvd.isan();
+        this.title = dvd.title();
+        this.releaseDate = dvd.releaseDate();
+        this.directedBy = dvd.directedBy();
+        this.duration = dvd.duration();
+        this.genre = dvd.genre();
+        this.quantity = dvd.quantity();
+        this.resume = dvd.resume();
+        this.filmCover = dvd.filmCover();
+        this.type = dvd.type();
+    }
+    public DvdServiceModel(long id,DvdDTO dvd) {
+        this.id = id;
         this.isan = dvd.isan();
         this.title = dvd.title();
         this.releaseDate = dvd.releaseDate();

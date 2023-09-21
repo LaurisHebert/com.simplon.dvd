@@ -23,19 +23,7 @@ public class DvdController {
     @GetMapping("{/id}")
     public DvdGetDTO findById(@PathVariable long id) {
         DvdServiceModel dvd = service.findById(id);
-        return new DvdGetDTO(
-                dvd.getId(),
-                dvd.getIsan(),
-                dvd.getTitle(),
-                dvd.getReleaseDate(),
-                dvd.getDirectedBy(),
-                dvd.getDuration(),
-                dvd.getGenre(),
-                dvd.getQuantity(),
-                dvd.getResume(),
-                dvd.getFilmCover(),
-                dvd.getType()
-        );
+        return new DvdGetDTO(dvd);
     }
 
     @GetMapping
@@ -43,31 +31,13 @@ public class DvdController {
         List<DvdGetDTO> dvds = new ArrayList<>();
 
         for (DvdServiceModel dvd : service.findAll()) {
-            dvds.add(
-                    new DvdGetDTO(
-                            dvd.getId(),
-                            dvd.getIsan(),
-                            dvd.getTitle(),
-                            dvd.getReleaseDate(),
-                            dvd.getDirectedBy(),
-                            dvd.getDuration(),
-                            dvd.getGenre(),
-                            dvd.getQuantity(),
-                            dvd.getResume(),
-                            dvd.getFilmCover(),
-                            dvd.getType()
-                    )
-            );
+            dvds.add(new DvdGetDTO(dvd));
         }
         return dvds;
     }
 
     @PostMapping("{/id}")
-    public void update(@PathVariable long id, @RequestBody DvdDTO dvdDTO) {
-        DvdServiceModel dvd = new DvdServiceModel(dvdDTO);
-        dvd.setId(id);
-        service.save(dvd);
-    }
+    public void update(@PathVariable long id, @RequestBody DvdDTO dvdDTO) {service.save(new DvdServiceModel(id, dvdDTO));}
 
     @DeleteMapping("{/id}")
     public void deleteById(@PathVariable long id) {
