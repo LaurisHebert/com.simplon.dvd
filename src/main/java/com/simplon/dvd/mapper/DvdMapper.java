@@ -14,8 +14,10 @@ import java.util.List;
 public interface DvdMapper {
     DvdMapper INSTANCE = Mappers.getMapper(DvdMapper.class);
 
+    @Mapping(target = "releaseDate", source = "releaseDate", dateFormat = "dd/MM/yyyy")
     DvdServiceModel dvdDTOToDvdService(DvdDTO dvdDTO);
 
+    @Mapping(target = "releaseDate", source = "releaseDate", dateFormat = "dd/MM/yyyy")
     DvdServiceModel dvdEntityToDvdService(DvdRepositoryModelSQL dvdRepositoryModelSQL);
 
     DvdRepositoryModelSQL dvdServiceToDvdEntity(DvdServiceModel dvdServiceModel);

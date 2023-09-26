@@ -3,7 +3,7 @@ package com.simplon.dvd.controllers;
 public record DvdDTO (
         String isan,
         String title,
-        int releaseDate,
+        String releaseDate,
         String directedBy,
         int duration,
         int quantity,

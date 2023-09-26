@@ -5,6 +5,7 @@ import com.simplon.dvd.Enum.Type;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +18,7 @@ public class DvdServiceModel {
     private int quantity;
     private String resume;
     private String filmCover;
-    private int releaseDate;
+    private LocalDate releaseDate;
     private Genre genre;
     private Type type;
 }

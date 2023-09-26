@@ -5,6 +5,10 @@ import com.simplon.dvd.Enum.Type;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Data
@@ -28,17 +32,12 @@ public class DvdRepositoryModelSQL {
     private String resume;
     @Column(name = "film_cover")
     private String filmCover;
+    @Column(name = "release_date", nullable = false)
+    private LocalDate releaseDate;
+    @Column(name = "type", nullable = false)
     @Enumerated(EnumType.STRING)
     private Type type;
+    @Column(name = "genre", nullable = false)
     @Enumerated(EnumType.STRING)
     private Genre genre;
-
-    // +++++++++++++++++++
-    @Column(name = "release_date", nullable = false)
-    // Voir avec Mapper sinon mettre en milisecondes
-    private Integer releaseDate;
-    // +++++++++++++++++++
-
-
-
 }
