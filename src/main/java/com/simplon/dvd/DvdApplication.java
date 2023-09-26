@@ -11,6 +11,3 @@ public class DvdApplication {
     }
 
 }
-
-
-// ajouter MapStruct au projet
