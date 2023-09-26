@@ -1,11 +1,10 @@
 package com.simplon.dvd.controllers;
 
+import com.simplon.dvd.mapper.DvdMapper;
 import com.simplon.dvd.services.DvdService;
-import com.simplon.dvd.services.DvdServiceModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -17,29 +16,23 @@ public class DvdController {
 
     @PostMapping
     public void save(@RequestBody DvdDTO dvdDTO) {
-        service.save(new DvdServiceModel(dvdDTO));
+        service.save(DvdMapper.INSTANCE.dvdDTOToDvdService(dvdDTO),null);
     }
 
-    @GetMapping("{/id}")
+    @GetMapping("{id}")
     public DvdGetDTO findById(@PathVariable long id) {
-        DvdServiceModel dvd = service.findById(id);
-        return new DvdGetDTO(dvd);
+        return DvdMapper.INSTANCE.dvdServiceToDvdGetDTO(service.findById(id));
     }
 
     @GetMapping
     public List<DvdGetDTO> findAll() {
-        List<DvdGetDTO> dvds = new ArrayList<>();
-
-        for (DvdServiceModel dvd : service.findAll()) {
-            dvds.add(new DvdGetDTO(dvd));
-        }
-        return dvds;
+        return DvdMapper.INSTANCE.listDvdServiceToDvdGetDTO(service.findAll());
     }
 
-    @PostMapping("{/id}")
-    public void update(@PathVariable long id, @RequestBody DvdDTO dvdDTO) {service.save(new DvdServiceModel(id, dvdDTO));}
+    @PutMapping("{id}")
+    public void update(@PathVariable long id, @RequestBody DvdDTO dvdDTO) {service.save(DvdMapper.INSTANCE.dvdDTOToDvdService(dvdDTO), id);}
 
-    @DeleteMapping("{/id}")
+    @DeleteMapping("{id}")
     public void deleteById(@PathVariable long id) {
         service.deleteById(id);
     }

@@ -2,32 +2,21 @@ package com.simplon.dvd.controllers;
 
 import com.simplon.dvd.Enum.Genre;
 import com.simplon.dvd.Enum.Type;
-import com.simplon.dvd.services.DvdServiceModel;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
 public class DvdGetDTO {
-    Long id = null;
-    String isan;
-    String title;
-    int releaseDate;
-    String directedBy;
-    int duration;
-    Genre genre;
-    int quantity;
-    String resume;
-    String filmCover;
-    Type type;
-
-    public DvdGetDTO (DvdServiceModel dvd) {
-        this.id = dvd.getId();
-        this.isan = dvd.getIsan();
-        this.title = dvd.getTitle();
-        this.releaseDate = dvd.getReleaseDate();
-        this.directedBy = dvd.getDirectedBy();
-        this.duration = dvd.getDuration();
-        this.genre = dvd.getGenre();
-        this.quantity = dvd.getQuantity();
-        this.resume = dvd.getResume();
-        this.filmCover = dvd.getFilmCover();
-        this.type = dvd.getType();
-    }
+    private Long id;
+    private String isan;
+    private String title;
+    private String directedBy;
+    private int duration;
+    private int quantity;
+    private String resume;
+    private String filmCover;
+    private int releaseDate;
+    private Type type;
+    private Genre genre;
 }

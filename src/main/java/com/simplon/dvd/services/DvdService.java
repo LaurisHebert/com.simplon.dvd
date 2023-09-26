@@ -1,11 +1,12 @@
 package com.simplon.dvd.services;
 
-import com.simplon.dvd.entitys.DvdEntity;
+import com.simplon.dvd.mapper.DvdMapper;
 import com.simplon.dvd.repositories.DvdRepository;
+import com.simplon.dvd.repositories.DvdRepositoryModelSQL;
+import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,25 +14,23 @@ public class DvdService {
     @Autowired
     private DvdRepository repository;
 
-    public void save(DvdServiceModel dvdServiceModel) {
-        repository.save(new DvdEntity(dvdServiceModel));
+    public void save(DvdServiceModel dvdServiceModel, @Nullable Long id) {
+        DvdRepositoryModelSQL dvdRepositoryModelSQL = DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel);
+        if (id != null) dvdRepositoryModelSQL.setId(id);
+        repository.save(dvdRepositoryModelSQL);
     }
 
     public DvdServiceModel findById(long id) {
-        return new DvdServiceModel(repository.findById(id).orElseThrow());
+        if (repository.findById(id).isPresent())
+        return DvdMapper.INSTANCE.dvdEntityToDvdService(repository.findById(id).get());
+        else return null;
     }
 
     public List<DvdServiceModel> findAll() {
-        List<DvdServiceModel> dvdList = new ArrayList<>();
-        for (DvdEntity dvd : repository.findAll()) {
-            dvdList.add(new DvdServiceModel(dvd));
-        }
-        return dvdList;
+        return DvdMapper.INSTANCE.listDvdEntityToDvdService((List<DvdRepositoryModelSQL>) repository.findAll());
     }
 
     public void deleteById(long id) {
         repository.deleteById(id);
     }
-
-
 }
