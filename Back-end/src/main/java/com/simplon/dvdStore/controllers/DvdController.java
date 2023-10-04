@@ -15,29 +15,30 @@ public class DvdController {
     @Autowired
     private DvdService service;
 
+    private final DvdMapper dvdMapper = DvdMapper.INSTANCE;
+
     @PostMapping
     public void save(@RequestBody DvdDTO dvdDTO) {
-        service.save(DvdMapper.INSTANCE.dvdDTOToDvdService(dvdDTO), null);
+        service.save(dvdMapper.dvdDTOToDvdService(dvdDTO));
     }
 
     @GetMapping("{id}")
     public DvdGetDTO findById(@PathVariable long id) {
-        return DvdMapper.INSTANCE.dvdServiceToDvdGetDTO(service.findById(id));
+        return dvdMapper.dvdServiceToDvdGetDTO(service.findById(id));
     }
 
     @GetMapping
     public List<DvdGetDTO> findAll() {
-        return DvdMapper.INSTANCE.listDvdServiceToDvdGetDTO(service.findAll());
+        return dvdMapper.listDvdServiceToDvdGetDTO(service.findAll());
     }
 
     @PutMapping("{id}")
     public void update(@PathVariable long id, @RequestBody DvdDTO dvdDTO) {
-        service.save(DvdMapper.INSTANCE.dvdDTOToDvdService(dvdDTO), id);
+        service.update(dvdMapper.dvdDTOToDvdService(dvdDTO), id);
     }
 
     @DeleteMapping("{id}")
     public void deleteById(@PathVariable long id) {
         service.deleteById(id);
     }
-
 }

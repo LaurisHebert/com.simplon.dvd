@@ -24,6 +24,7 @@ public interface ClientMapper {
     @Mapping(target = "registrationDate", ignore = true)
     ClientServiceModel dtoToService(ClientDTO clientDTO);
 
+    @Mapping(target = "recording", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "registrationDate", ignore = true)
     ClientRepositoryModelSQL serviceToRepository(ClientServiceModel clientServiceModel);

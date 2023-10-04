@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Entity
@@ -26,5 +28,7 @@ public class ClientRepositoryModelSQL {
     @Column(nullable = false, name = "registration_date")
     private LocalDate registrationDate = LocalDate.now();
 
+    @OneToMany(mappedBy = "client")
+    private Set<SaleRepositoryModelSQL> recording = new HashSet<>();
 }
 

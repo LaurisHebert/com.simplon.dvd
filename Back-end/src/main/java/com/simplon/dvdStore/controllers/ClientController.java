@@ -14,24 +14,26 @@ public class ClientController {
     @Autowired
     ClientService service;
 
+    private final ClientMapper clientMapper = ClientMapper.INSTANCE;
+
     @GetMapping
     public List<ClientGetDTO> findAll() {
-        return ClientMapper.INSTANCE.listServiceToGetDTO(service.findAll());
+        return clientMapper.listServiceToGetDTO(service.findAll());
     }
 
     @PostMapping
     public void save(@RequestBody ClientDTO clientDTO) {
-        service.save(ClientMapper.INSTANCE.dtoToService(clientDTO), null);
+        service.save(clientMapper.dtoToService(clientDTO));
     }
 
     @GetMapping("/{id}")
     public ClientGetDTO findById(@PathVariable long id) {
-        return ClientMapper.INSTANCE.serviceToGetDTO(service.findById(id));
+        return clientMapper.serviceToGetDTO(service.findById(id));
     }
 
     @PutMapping("{id}")
     public void update(@PathVariable long id, @RequestBody ClientDTO clientDTO) {
-        service.save(ClientMapper.INSTANCE.dtoToService(clientDTO), id);
+        service.update(clientMapper.dtoToService(clientDTO), id);
     }
 
     @DeleteMapping("{id}")

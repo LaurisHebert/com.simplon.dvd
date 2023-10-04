@@ -14,13 +14,14 @@ import java.util.List;
 public interface DvdMapper {
     DvdMapper INSTANCE = Mappers.getMapper(DvdMapper.class);
 
-    @Mapping(target = "releaseDate", source = "releaseDate", dateFormat = "dd/MM/yyyy")
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "releaseDate", source = "releaseDate", dateFormat = "dd/MM/yyyy")
     DvdServiceModel dvdDTOToDvdService(DvdDTO dvdDTO);
 
     @Mapping(target = "releaseDate", source = "releaseDate", dateFormat = "dd/MM/yyyy")
     DvdServiceModel dvdEntityToDvdService(DvdRepositoryModelSQL dvdRepositoryModelSQL);
 
+    @Mapping(target = "recording", ignore = true)
     DvdRepositoryModelSQL dvdServiceToDvdEntity(DvdServiceModel dvdServiceModel);
 
     DvdGetDTO dvdServiceToDvdGetDTO(DvdServiceModel dvdServiceModel);

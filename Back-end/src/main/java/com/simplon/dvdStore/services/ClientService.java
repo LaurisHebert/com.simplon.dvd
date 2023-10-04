@@ -15,9 +15,12 @@ public class ClientService {
     @Autowired
     ClientRepository repository;
 
-    public void save(ClientServiceModel clientServiceModel, @Nullable Long id) {
+    public void save(ClientServiceModel clientServiceModel) {
+        repository.save(ClientMapper.INSTANCE.serviceToRepository(clientServiceModel));
+    }
+    public void update(ClientServiceModel clientServiceModel, long id) {
         ClientRepositoryModelSQL client = ClientMapper.INSTANCE.serviceToRepository(clientServiceModel);
-        if (id != null) client.setId(id);
+        client.setId(id);
         repository.save(client);
     }
 
@@ -32,4 +35,6 @@ public class ClientService {
     public void deleteById(long id) {
         repository.deleteById(id);
     }
+
+
 }

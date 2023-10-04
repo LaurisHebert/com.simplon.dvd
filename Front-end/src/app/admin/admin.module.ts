@@ -9,5 +9,6 @@ import {CommonModule} from "@angular/common";
     AdminRoutingModule,
     CommonModule
   ],
+  bootstrap: [AdminDashboardComponent]
 })
 export class AdminModule {}

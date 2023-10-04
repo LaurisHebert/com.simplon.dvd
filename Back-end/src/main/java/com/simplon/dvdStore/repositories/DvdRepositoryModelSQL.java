@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -39,4 +41,7 @@ public class DvdRepositoryModelSQL {
     @Column(name = "genre", nullable = false)
     @Enumerated(EnumType.STRING)
     private Genre genre;
+
+    @OneToMany(mappedBy = "dvd")
+    private Set<SaleRepositoryModelSQL> recording = new HashSet<>();
 }
