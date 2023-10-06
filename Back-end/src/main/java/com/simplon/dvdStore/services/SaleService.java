@@ -1,10 +1,10 @@
 package com.simplon.dvdStore.services;
 
+import com.simplon.dvdStore.domain.SaleRepositoryModelSQL;
 import com.simplon.dvdStore.mapper.SaleMapper;
 import com.simplon.dvdStore.repositories.ClientRepository;
 import com.simplon.dvdStore.repositories.DvdRepository;
 import com.simplon.dvdStore.repositories.SaleRepository;
-import com.simplon.dvdStore.repositories.SaleRepositoryModelSQL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class SaleService {
     }
 
     public void update(SaleServiceModel saleServiceModel, long id) {
-        saleRepository.save(saleMapper.serviceToRepositoryUpdate(id,clientRepository.findById(saleServiceModel.getClient_id()).get(), dvdRepository.findById(saleServiceModel.getDvd_id()).get(), saleServiceModel.getQuantity()));
+        saleRepository.save(saleMapper.serviceToRepositoryUpdate(id, clientRepository.findById(saleServiceModel.getClient_id()).get(), dvdRepository.findById(saleServiceModel.getDvd_id()).get(), saleServiceModel.getQuantity()));
     }
 
     public SaleServiceModel findById(long id) {

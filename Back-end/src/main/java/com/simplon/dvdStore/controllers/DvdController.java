@@ -1,6 +1,8 @@
 package com.simplon.dvdStore.controllers;
 
 
+import com.simplon.dvdStore.dto.DvdDTO;
+import com.simplon.dvdStore.dto.DvdGetDTO;
 import com.simplon.dvdStore.mapper.DvdMapper;
 import com.simplon.dvdStore.services.DvdService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,9 @@ import java.util.List;
 @RequestMapping(path = "dvd")
 public class DvdController {
 
+    private final DvdMapper dvdMapper = DvdMapper.INSTANCE;
     @Autowired
     private DvdService service;
-
-    private final DvdMapper dvdMapper = DvdMapper.INSTANCE;
 
     @PostMapping
     public void save(@RequestBody DvdDTO dvdDTO) {

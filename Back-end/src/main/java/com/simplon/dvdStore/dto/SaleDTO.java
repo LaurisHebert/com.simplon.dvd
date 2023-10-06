@@ -1,4 +1,4 @@
-package com.simplon.dvdStore.controllers;
+package com.simplon.dvdStore.dto;
 
 public record SaleDTO(
         long client,

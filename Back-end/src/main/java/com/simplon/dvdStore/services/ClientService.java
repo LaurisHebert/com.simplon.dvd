@@ -1,10 +1,9 @@
 package com.simplon.dvdStore.services;
 
 
+import com.simplon.dvdStore.domain.ClientRepositoryModelSQL;
 import com.simplon.dvdStore.mapper.ClientMapper;
 import com.simplon.dvdStore.repositories.ClientRepository;
-import com.simplon.dvdStore.repositories.ClientRepositoryModelSQL;
-import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,7 @@ public class ClientService {
     public void save(ClientServiceModel clientServiceModel) {
         repository.save(ClientMapper.INSTANCE.serviceToRepository(clientServiceModel));
     }
+
     public void update(ClientServiceModel clientServiceModel, long id) {
         ClientRepositoryModelSQL client = ClientMapper.INSTANCE.serviceToRepository(clientServiceModel);
         client.setId(id);

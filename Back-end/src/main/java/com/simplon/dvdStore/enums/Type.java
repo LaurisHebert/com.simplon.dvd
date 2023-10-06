@@ -1,4 +1,4 @@
-package com.simplon.dvdStore.Enum;
+package com.simplon.dvdStore.enums;
 
 public enum Type {
     MOVIE,

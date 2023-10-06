@@ -1,5 +1,7 @@
 package com.simplon.dvdStore.controllers;
 
+import com.simplon.dvdStore.dto.SaleDTO;
+import com.simplon.dvdStore.dto.SaleGetDTO;
 import com.simplon.dvdStore.mapper.SaleMapper;
 import com.simplon.dvdStore.services.SaleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "sales")
 public class SaleController {
+    private final SaleMapper dvdMapper = SaleMapper.INSTANCE;
     @Autowired
     private SaleService service;
-
-    private final SaleMapper dvdMapper = SaleMapper.INSTANCE;
 
     @PostMapping
     public void save(@RequestBody SaleDTO dvdDTO) {

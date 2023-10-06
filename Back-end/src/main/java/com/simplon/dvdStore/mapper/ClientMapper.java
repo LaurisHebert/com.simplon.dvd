@@ -1,9 +1,9 @@
 package com.simplon.dvdStore.mapper;
 
 
-import com.simplon.dvdStore.controllers.ClientDTO;
-import com.simplon.dvdStore.controllers.ClientGetDTO;
-import com.simplon.dvdStore.repositories.ClientRepositoryModelSQL;
+import com.simplon.dvdStore.domain.ClientRepositoryModelSQL;
+import com.simplon.dvdStore.dto.ClientDTO;
+import com.simplon.dvdStore.dto.ClientGetDTO;
 import com.simplon.dvdStore.services.ClientServiceModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

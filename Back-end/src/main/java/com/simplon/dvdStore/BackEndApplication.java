@@ -9,6 +9,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
 public class BackEndApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(BackEndApplication.class, args);
+    }
+
     @Configuration
     @EnableWebMvc
     public class WebConfig implements WebMvcConfigurer {
@@ -17,9 +21,6 @@ public class BackEndApplication {
         public void addCorsMappings(CorsRegistry registry) {
             registry.addMapping("/**");
         }
-    }
-    public static void main(String[] args) {
-        SpringApplication.run(BackEndApplication.class, args);
     }
 
 }

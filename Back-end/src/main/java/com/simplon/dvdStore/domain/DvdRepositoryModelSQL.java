@@ -1,8 +1,8 @@
-package com.simplon.dvdStore.repositories;
+package com.simplon.dvdStore.domain;
 
 
-import com.simplon.dvdStore.Enum.Genre;
-import com.simplon.dvdStore.Enum.Type;
+import com.simplon.dvdStore.enums.Genre;
+import com.simplon.dvdStore.enums.Type;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;

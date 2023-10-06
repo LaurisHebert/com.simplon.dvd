@@ -1,10 +1,9 @@
 package com.simplon.dvdStore.services;
 
 
+import com.simplon.dvdStore.domain.DvdRepositoryModelSQL;
 import com.simplon.dvdStore.mapper.DvdMapper;
 import com.simplon.dvdStore.repositories.DvdRepository;
-import com.simplon.dvdStore.repositories.DvdRepositoryModelSQL;
-import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +17,7 @@ public class DvdService {
     public void save(DvdServiceModel dvdServiceModel) {
         repository.save(DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel));
     }
+
     public void update(DvdServiceModel dvdServiceModel, long id) {
         DvdRepositoryModelSQL dvdRepositoryModelSQL = DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel);
         dvdRepositoryModelSQL.setId(id);

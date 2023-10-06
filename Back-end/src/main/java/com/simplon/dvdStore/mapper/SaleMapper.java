@@ -1,11 +1,10 @@
 package com.simplon.dvdStore.mapper;
 
-import com.simplon.dvdStore.controllers.SaleDTO;
-import com.simplon.dvdStore.controllers.SaleGetDTO;
-import com.simplon.dvdStore.repositories.ClientRepository;
-import com.simplon.dvdStore.repositories.ClientRepositoryModelSQL;
-import com.simplon.dvdStore.repositories.DvdRepositoryModelSQL;
-import com.simplon.dvdStore.repositories.SaleRepositoryModelSQL;
+import com.simplon.dvdStore.domain.ClientRepositoryModelSQL;
+import com.simplon.dvdStore.domain.DvdRepositoryModelSQL;
+import com.simplon.dvdStore.domain.SaleRepositoryModelSQL;
+import com.simplon.dvdStore.dto.SaleDTO;
+import com.simplon.dvdStore.dto.SaleGetDTO;
 import com.simplon.dvdStore.services.SaleServiceModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -32,6 +31,7 @@ public interface SaleMapper {
     @Mapping(target = "dvd", source = "dvdRepositoryModelSQL")
     @Mapping(target = "quantity", source = "quantity")
     SaleRepositoryModelSQL serviceToRepository(ClientRepositoryModelSQL clientRepositoryModelSQL, DvdRepositoryModelSQL dvdRepositoryModelSQL, long quantity);
+
     @Mapping(target = "id", source = "id")
     @Mapping(target = "client", source = "clientRepositoryModelSQL")
     @Mapping(target = "dvd", source = "dvdRepositoryModelSQL")
@@ -46,8 +46,8 @@ public interface SaleMapper {
     //                     Repository  ->  Service  -->  GetDTO
     // ------------------------------------------------------------------------------
 
-    @Mapping(target = "client_id",ignore = true)
-    @Mapping(target = "dvd_id",ignore = true)
+    @Mapping(target = "client_id", ignore = true)
+    @Mapping(target = "dvd_id", ignore = true)
     SaleServiceModel repositoryToService(SaleRepositoryModelSQL saleRepositoryModelSQL);
 
     SaleGetDTO serviceToGetDTO(SaleServiceModel saleServiceModel);

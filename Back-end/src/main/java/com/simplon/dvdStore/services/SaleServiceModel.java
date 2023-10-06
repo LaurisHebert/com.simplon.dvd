@@ -1,7 +1,7 @@
 package com.simplon.dvdStore.services;
 
-import com.simplon.dvdStore.repositories.ClientRepositoryModelSQL;
-import com.simplon.dvdStore.repositories.DvdRepositoryModelSQL;
+import com.simplon.dvdStore.domain.ClientRepositoryModelSQL;
+import com.simplon.dvdStore.domain.DvdRepositoryModelSQL;
 import lombok.Data;
 
 @Data

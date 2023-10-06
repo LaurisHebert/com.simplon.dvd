@@ -1,9 +1,13 @@
 package com.simplon.dvdStore.controllers;
 
 
+import com.simplon.dvdStore.dto.ClientDTO;
+import com.simplon.dvdStore.dto.ClientGetDTO;
 import com.simplon.dvdStore.mapper.ClientMapper;
 import com.simplon.dvdStore.services.ClientService;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,10 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "client")
 public class ClientController {
+    private final ClientMapper clientMapper = ClientMapper.INSTANCE;
     @Autowired
     ClientService service;
-
-    private final ClientMapper clientMapper = ClientMapper.INSTANCE;
 
     @GetMapping
     public List<ClientGetDTO> findAll() {

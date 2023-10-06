@@ -1,7 +1,7 @@
 package com.simplon.dvdStore.services;
 
-import com.simplon.dvdStore.Enum.Genre;
-import com.simplon.dvdStore.Enum.Type;
+import com.simplon.dvdStore.enums.Genre;
+import com.simplon.dvdStore.enums.Type;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
