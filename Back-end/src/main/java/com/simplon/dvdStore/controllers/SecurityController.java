@@ -5,6 +5,7 @@ import com.simplon.dvdStore.dto.AuthResponseDTO;
 import com.simplon.dvdStore.exeception.AccountExistsException;
 import com.simplon.dvdStore.exeception.UnauthorizedException;
 import com.simplon.dvdStore.services.JwtUserService;
+import jakarta.annotation.security.RolesAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -27,6 +28,7 @@ public class SecurityController {
         String token = userService.generateJwtForUser(user);
         return ResponseEntity.ok(new AuthResponseDTO(user,token));
     }
+
     @PostMapping("/authorize")
     public ResponseEntity<AuthResponseDTO> authorize(@RequestBody AuthRequestDTO requestDTO) throws UnauthorizedException {
         Authentication authentication = null;
@@ -42,4 +44,5 @@ public class SecurityController {
             throw new RuntimeException(e);
         }
     }
+
 }

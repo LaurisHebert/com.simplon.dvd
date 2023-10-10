@@ -1,6 +1,7 @@
 package com.simplon.dvdStore.services.impl;
 
 import com.simplon.dvdStore.domain.OwnerRepositoryModelSQL;
+import com.simplon.dvdStore.domain.RoleRepositoryModelSQL;
 import com.simplon.dvdStore.exeception.AccountExistsException;
 import com.simplon.dvdStore.repositories.OwnerRepository;
 import com.simplon.dvdStore.services.JwtUserService;
@@ -47,7 +48,9 @@ public class JwtUserServiceImpl implements JwtUserService {
     @Override
     public Authentication authenticate(String username, String password) throws Exception {
         Authentication authentication = new UsernamePasswordAuthenticationToken(username, password);
-        return authenticationConfiguration.getAuthenticationManager().authenticate(authentication);
+        return authenticationConfiguration
+                .getAuthenticationManager()
+                .authenticate(authentication);
     }
 
     @Override
@@ -59,10 +62,10 @@ public class JwtUserServiceImpl implements JwtUserService {
         OwnerRepositoryModelSQL owner = new OwnerRepositoryModelSQL();
         owner.setLogin(username);
         owner.setPassword(passwordEncoder.encode(password));
+        owner.setRoles(List.of(new RoleRepositoryModelSQL(2, "USER_ROLE")));
         ownerRepository.save(owner);
         return owner;
     }
-
 
     @Override
     public UserDetails getUserFromJwt(String jwt) {
@@ -72,7 +75,11 @@ public class JwtUserServiceImpl implements JwtUserService {
 
     private String getUsernameFromToken(String token) {
         System.out.println(signingKey);
-        Claims claims = Jwts.parser().setSigningKey(signingKey).parseClaimsJws(token).getBody();
+        Claims claims = Jwts
+                .parser()
+                .setSigningKey(signingKey)
+                .parseClaimsJws(token)
+                .getBody();
         return claims.getSubject();
     }
 
@@ -80,7 +87,13 @@ public class JwtUserServiceImpl implements JwtUserService {
     public String generateJwtForUser(UserDetails user) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + 1000 * 60 * 60);
-        return Jwts.builder().setSubject(user.getUsername()).setIssuedAt(now).setExpiration(expiryDate).signWith(SignatureAlgorithm.HS512, signingKey).compact();
+       return Jwts.builder()
+                .setSubject(user.getUsername())
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
+                .signWith(SignatureAlgorithm.HS512, signingKey)
+
+                .compact();
     }
 
 }

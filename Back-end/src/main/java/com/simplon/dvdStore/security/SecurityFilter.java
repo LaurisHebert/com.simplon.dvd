@@ -1,6 +1,7 @@
 package com.simplon.dvdStore.security;
 
 import com.simplon.dvdStore.services.JwtUserService;
+import io.micrometer.common.lang.NonNullApi;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,9 +25,13 @@ public class SecurityFilter extends OncePerRequestFilter {
         try {
             String header = request.getHeader("Authorization");
             String incomingJwt = header.substring(7);
+
             UserDetails user = jwtUserService.getUserFromJwt(incomingJwt);
-            Authentication authentication = new
-                    UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+
+            Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+
+            System.out.println(authentication);
+
             SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (Exception e) {
             logger.info("Trying parse token but failed");
