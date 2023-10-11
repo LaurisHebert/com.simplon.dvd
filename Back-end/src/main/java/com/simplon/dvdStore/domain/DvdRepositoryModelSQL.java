@@ -11,6 +11,9 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * The type Dvd repository model sql.
+ */
 @Entity
 @Data
 @Table(name = "dvd")

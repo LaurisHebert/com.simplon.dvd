@@ -3,11 +3,12 @@ package com.simplon.dvdStore.domain;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
+/**
+ * The type Role repository model sql.
+ */
 @Entity
 @Data
 @Table(name = "role")

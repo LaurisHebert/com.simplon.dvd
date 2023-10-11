@@ -1,7 +1,6 @@
 package com.simplon.dvdStore.security;
 
 import com.simplon.dvdStore.services.JwtUserService;
-import io.micrometer.common.lang.NonNullApi;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -15,6 +14,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * The type Security filter.
+ */
 public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired

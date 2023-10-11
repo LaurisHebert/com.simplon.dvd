@@ -8,6 +8,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+/**
+ * The type Dvd get dto.
+ */
 @Data
 @NoArgsConstructor
 public class DvdGetDTO {

@@ -4,9 +4,12 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The type Sale repository model sql.
+ */
 @Entity
 @Data
-@Table(name = "dvd")
+@Table(name = "sale")
 @NoArgsConstructor
 public class SaleRepositoryModelSQL {
     @Id

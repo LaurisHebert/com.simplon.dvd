@@ -1,5 +1,8 @@
 package com.simplon.dvdStore.dto;
 
+/**
+ * The type Dvd dto.
+ */
 public record DvdDTO(
         String isan,
         String title,

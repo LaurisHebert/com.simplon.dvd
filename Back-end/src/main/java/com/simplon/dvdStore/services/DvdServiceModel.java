@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+/**
+ * The type Dvd service model.
+ */
 @Data
 @NoArgsConstructor
 public class DvdServiceModel {

@@ -21,10 +21,16 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The type Jwt user service.
+ */
 @Service
 public class JwtUserServiceImpl implements JwtUserService {
 
     private final String signingKey;
+    /**
+     * The Authentication configuration.
+     */
     @Autowired
     AuthenticationConfiguration authenticationConfiguration;
     @Autowired
@@ -32,6 +38,11 @@ public class JwtUserServiceImpl implements JwtUserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    /**
+     * Instantiates a new Jwt user service.
+     *
+     * @param signingKey the signing key
+     */
     public JwtUserServiceImpl(@Value("${jwt.signing.key}") String signingKey) {
         this.signingKey = signingKey;
     }
@@ -62,7 +73,7 @@ public class JwtUserServiceImpl implements JwtUserService {
         OwnerRepositoryModelSQL owner = new OwnerRepositoryModelSQL();
         owner.setLogin(username);
         owner.setPassword(passwordEncoder.encode(password));
-        owner.setRoles(List.of(new RoleRepositoryModelSQL(2, "USER_ROLE")));
+        owner.setRoles(List.of(new RoleRepositoryModelSQL(1, "1")));
         ownerRepository.save(owner);
         return owner;
     }
@@ -87,7 +98,7 @@ public class JwtUserServiceImpl implements JwtUserService {
     public String generateJwtForUser(UserDetails user) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + 1000 * 60 * 60);
-       return Jwts.builder()
+        return Jwts.builder()
                 .setSubject(user.getUsername())
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
