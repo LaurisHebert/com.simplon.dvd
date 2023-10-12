@@ -20,8 +20,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class DvdRepositoryModelSQL {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "isan", unique = true, nullable = false)
     private String isan;
     @Column(name = "title", nullable = false)

@@ -28,25 +28,25 @@ public interface DvdMapper {
      */
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "releaseDate", source = "releaseDate", dateFormat = "dd/MM/yyyy")
-    DvdServiceModel dvdDTOToDvdService(DvdDTO dvdDTO);
+    DvdServiceModel dtoToService(DvdDTO dvdDTO);
 
     /**
-     * Dvd entity to dvd service dvd service model.
+     * Dvd repository to dvd service dvd service model.
      *
      * @param dvdRepositoryModelSQL the dvd repository model sql
      * @return the dvd service model
      */
     @Mapping(target = "releaseDate", source = "releaseDate", dateFormat = "dd/MM/yyyy")
-    DvdServiceModel dvdEntityToDvdService(DvdRepositoryModelSQL dvdRepositoryModelSQL);
+    DvdServiceModel repositoryToService(DvdRepositoryModelSQL dvdRepositoryModelSQL);
 
     /**
-     * Dvd service to dvd entity dvd repository model sql.
+     * Dvd service to dvd repository dvd repository model sql.
      *
      * @param dvdServiceModel the dvd service model
      * @return the dvd repository model sql
      */
     @Mapping(target = "recording", ignore = true)
-    DvdRepositoryModelSQL dvdServiceToDvdEntity(DvdServiceModel dvdServiceModel);
+    DvdRepositoryModelSQL serviceToRepository(DvdServiceModel dvdServiceModel);
 
     /**
      * Dvd service to dvd get dto dvd get dto.
@@ -54,15 +54,15 @@ public interface DvdMapper {
      * @param dvdServiceModel the dvd service model
      * @return the dvd get dto
      */
-    DvdGetDTO dvdServiceToDvdGetDTO(DvdServiceModel dvdServiceModel);
+    DvdGetDTO serviceToGetDTO(DvdServiceModel dvdServiceModel);
 
     /**
-     * List dvd entity to dvd service list.
+     * List dvd repository to dvd service list.
      *
      * @param dvdRepositoryModelSQL the dvd repository model sql
      * @return the list
      */
-    List<DvdServiceModel> listDvdEntityToDvdService(List<DvdRepositoryModelSQL> dvdRepositoryModelSQL);
+    List<DvdServiceModel> listRepositoryToService(List<DvdRepositoryModelSQL> dvdRepositoryModelSQL);
 
     /**
      * List dvd service to dvd get dto list.
@@ -70,5 +70,5 @@ public interface DvdMapper {
      * @param dvdServiceModel the dvd service model
      * @return the list
      */
-    List<DvdGetDTO> listDvdServiceToDvdGetDTO(List<DvdServiceModel> dvdServiceModel);
+    List<DvdGetDTO> listServiceToGetDTO(List<DvdServiceModel> dvdServiceModel);
 }

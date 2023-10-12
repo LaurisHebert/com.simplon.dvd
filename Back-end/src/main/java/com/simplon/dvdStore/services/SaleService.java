@@ -47,7 +47,7 @@ public class SaleService {
      * @param saleServiceModel the sale service model
      * @param id               the id
      */
-    public void update(SaleServiceModel saleServiceModel, long id) {
+    public void update(SaleServiceModel saleServiceModel, int id) {
         saleRepository.save(saleMapper.serviceToRepositoryUpdate(id, clientRepository.findById(saleServiceModel.getClient_id()).get(), dvdRepository.findById(saleServiceModel.getDvd_id()).get(), saleServiceModel.getQuantity()));
     }
 
@@ -57,7 +57,7 @@ public class SaleService {
      * @param id the id
      * @return the sale service model
      */
-    public SaleServiceModel findById(long id) {
+    public SaleServiceModel findById(int id) {
         return SaleMapper.INSTANCE.repositoryToService(saleRepository.findById(id).get());
     }
 
@@ -75,7 +75,7 @@ public class SaleService {
      *
      * @param id the id
      */
-    public void deleteById(long id) {
+    public void deleteById(int id) {
         saleRepository.deleteById(id);
     }
 

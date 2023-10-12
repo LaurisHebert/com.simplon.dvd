@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class DvdGetDTO {
-    private Long id;
+    private Integer id;
     private String isan;
     private String title;
     private String directedBy;

@@ -9,8 +9,8 @@ import lombok.Data;
  */
 @Data
 public class SaleGetDTO {
-    private long id;
+    private Integer id;
     private ClientRepositoryModelSQL client;
     private DvdRepositoryModelSQL dvd;
-    private int quantity;
+    private Integer quantity;
 }

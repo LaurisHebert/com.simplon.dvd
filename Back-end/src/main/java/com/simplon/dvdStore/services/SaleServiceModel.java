@@ -9,11 +9,11 @@ import lombok.Data;
  */
 @Data
 public class SaleServiceModel {
-    private long id;
+    private Integer id;
     private ClientRepositoryModelSQL client;
     private DvdRepositoryModelSQL dvd;
-    private int quantity;
-    private long client_id;
-    private long dvd_id;
+    private Integer quantity;
+    private Integer client_id;
+    private Integer dvd_id;
 
 }

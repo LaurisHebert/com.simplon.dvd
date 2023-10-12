@@ -18,8 +18,8 @@ import java.util.Set;
 @NoArgsConstructor
 public class ClientRepositoryModelSQL {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(nullable = false, name = "client_reference", unique = true)
     private String clientReference;
     @Column(nullable = false, name = "first_name")
@@ -28,6 +28,7 @@ public class ClientRepositoryModelSQL {
     private String lastName;
     @Column(nullable = false, unique = true)
     private String email;
+
     @Column(nullable = false, name = "registration_date")
     private LocalDate registrationDate = LocalDate.now();
 

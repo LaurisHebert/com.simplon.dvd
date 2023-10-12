@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class ClientServiceModel {
-    private Long id;
+    private Integer id;
     private String clientReference;
     private String firstName;
     private String lastName;
