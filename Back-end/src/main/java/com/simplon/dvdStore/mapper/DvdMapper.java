@@ -45,7 +45,6 @@ public interface DvdMapper {
      * @param dvdServiceModel the dvd service model
      * @return the dvd repository model sql
      */
-    @Mapping(target = "recording", ignore = true)
     DvdRepositoryModelSQL dvdServiceToDvdEntity(DvdServiceModel dvdServiceModel);
 
     /**

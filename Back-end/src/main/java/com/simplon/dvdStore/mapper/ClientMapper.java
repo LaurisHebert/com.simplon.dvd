@@ -42,7 +42,6 @@ public interface ClientMapper {
      * @param clientServiceModel the client service model
      * @return the client repository model sql
      */
-    @Mapping(target = "recording", ignore = true)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "registrationDate", ignore = true)
     ClientRepositoryModelSQL serviceToRepository(ClientServiceModel clientServiceModel);
