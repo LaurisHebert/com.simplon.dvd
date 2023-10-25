@@ -2,11 +2,8 @@ package com.dvdstore.second.mappers;
 
 import com.dvdstore.second.domains.BasketRepositoryModelPostgreSQL;
 import com.dvdstore.second.domains.DvdBasketRepositoryModelPostgreSQL;
-import com.dvdstore.second.dtos.BasketDTO;
-import com.dvdstore.second.dtos.BasketGetDTO;
 import com.dvdstore.second.dtos.DvdBasketDTO;
 import com.dvdstore.second.dtos.DvdBasketGetDTO;
-import com.dvdstore.second.services.BasketServiceModel;
 import com.dvdstore.second.services.DvdBasketServiceModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -23,19 +20,19 @@ public interface DvdBasketMapper {
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "basketId", source = "basketRepositoryModelPostgreSQL")
-    DvdBasketServiceModel dtoToService(DvdBasketDTO dvdBasketDTO, BasketRepositoryModelPostgreSQL basketRepositoryModelPostgreSQL);
+    DvdBasketServiceModel dvdBasketDtoToDvdBasketServiceModel(DvdBasketDTO dvdBasketDTO);
 
     @Mapping(target = "id", ignore = true)
-    DvdBasketRepositoryModelPostgreSQL serviceToEntity(DvdBasketServiceModel dvdBasketServiceModel);
+    @Mapping(target = "basketId", source = "basket")
+    DvdBasketRepositoryModelPostgreSQL dvdBasketServiceModelToDvdBasketRepositoryModelPostgreSQL(DvdBasketServiceModel dvdBasketServiceModel, BasketRepositoryModelPostgreSQL basket);
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //            List<DTO>  ->  List<Service>  -->  List<Repository>
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-    List<DvdBasketServiceModel> listRepositoryToService(List<DvdBasketRepositoryModelPostgreSQL> allByBasketId);
+    List<DvdBasketGetDTO> listDvdBasketServiceModelToDvdBasketGetDto(List<DvdBasketServiceModel> allByBasketId);
 
-    List<DvdBasketGetDTO> listServiceToGetDto(List<DvdBasketServiceModel> allByBasketId);
+    List<DvdBasketServiceModel> listDvdBasketRepositoryModelPostgreSQLToDvdServiceModel(List<DvdBasketRepositoryModelPostgreSQL> allByBasketId);
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //                                     END

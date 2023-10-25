@@ -2,7 +2,10 @@ package com.dvdstore.second.controllers;
 
 import com.dvdstore.second.dtos.BasketDTO;
 import com.dvdstore.second.dtos.BasketGetDTO;
+import com.dvdstore.second.dtos.DvdBasketDTO;
+import com.dvdstore.second.dtos.DvdBasketGetDTO;
 import com.dvdstore.second.mappers.BasketMapper;
+import com.dvdstore.second.mappers.DvdBasketMapper;
 import com.dvdstore.second.services.BasketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,32 +16,57 @@ import java.util.List;
 @RequestMapping(path = "basket")
 public class BasketController {
     private final BasketMapper basketMapper = BasketMapper.INSTANCE;
+    private final DvdBasketMapper dvdBasketMapper = DvdBasketMapper.INSTANCE;
 
     @Autowired
-    private BasketService service;
+    private BasketService basketService;
 
-    @PostMapping
-    public void save(@RequestBody BasketDTO basketDTO) {
-        service.save(basketMapper.dtoToService(basketDTO));
+    @PostMapping()
+    public void saveBasket(@RequestBody BasketDTO basketDTO) {
+        basketService.saveBasket(basketMapper.basketDtoToBasketServiceModel(basketDTO));
+    }
+
+    @PostMapping("{clientId}/Basket-dvds")
+    public void saveDvdBasketByClientId(@PathVariable int clientId,@RequestBody DvdBasketDTO dvdBasketDTO) {
+        basketService.saveDvdBasketByClientId(clientId, dvdBasketMapper.dvdBasketDtoToDvdBasketServiceModel(dvdBasketDTO));
     }
 
     @GetMapping
-    public List<BasketGetDTO> findAll(){
-        return basketMapper.ListServiceToGetDto(service.findAll());
+    public List<BasketGetDTO> findAllBasket(){
+        return basketMapper.listBasketServiceModelToBasketGetDto(basketService.findAllBasket());
     }
 
-    @GetMapping("/{id}")
-    public BasketGetDTO findById(@PathVariable Integer id) {
-        return basketMapper.serviceToGetDto(service.findById(id));
+    @GetMapping("/{clientId}")
+    public BasketGetDTO findBasketByClientId(@PathVariable int clientId) {
+        return basketMapper.BasketServiceModelToBasketGetDto(basketService.findBasketByClientId(clientId), findAllDvdBasketByClientId(clientId));
     }
 
-    @PutMapping("/{id}")
-    public void update(@PathVariable Integer id, @RequestBody BasketDTO basketDTO) {
-        service.update(id, basketMapper.dtoToService(basketDTO));
+    public List<DvdBasketGetDTO> findAllDvdBasketByClientId(int clientId) {
+        return dvdBasketMapper.listDvdBasketServiceModelToDvdBasketGetDto(basketService.findAllDvdBasketByClientId(clientId));
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Integer id) {
-        service.deleteById(id);
+    @PutMapping("/{clientId}")
+    public void updateBasketByClientId(@PathVariable int clientId, @RequestBody BasketDTO basketDTO) {
+        basketService.updateBasketByClientId(clientId, basketMapper.basketDtoToBasketServiceModel(basketDTO));
     }
+
+    @PutMapping("/{clientId}/dvd-basket/{dvdBasketId}")
+    public void updateDvdBasketByClientId(@PathVariable int clientId, @PathVariable int dvdBasketId, @RequestBody DvdBasketDTO dvdBasketDTO) {
+        basketService.updateDvdBasketByClientId(clientId, dvdBasketId, dvdBasketMapper.dvdBasketDtoToDvdBasketServiceModel(dvdBasketDTO));
+    }
+
+    @DeleteMapping("/{clientId}")
+    public void deleteBasketByClientId(@PathVariable int clientId) {
+        basketService.deleteBasketByClientId(clientId);
+    }
+    @DeleteMapping("/{clientId}/dvd-basket/{dvdBasketId}")
+    public void deleteDvdBasketByClientIdAndId(@PathVariable int clientId, @PathVariable int dvdBasketId) {
+        basketService.deleteDvdBasketByClientIdAndId(clientId, dvdBasketId);
+    }
+    @DeleteMapping("/{clientId}/dvd-basket")
+    public void deleteAllDvdBasketByClientId(@PathVariable int clientId) {
+        basketService.deleteAllDvdBasketByClientId(clientId);
+    }
+
+
 }

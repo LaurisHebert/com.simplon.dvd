@@ -3,6 +3,7 @@ package com.dvdstore.second.mappers;
 import com.dvdstore.second.domains.BasketRepositoryModelPostgreSQL;
 import com.dvdstore.second.dtos.BasketDTO;
 import com.dvdstore.second.dtos.BasketGetDTO;
+import com.dvdstore.second.dtos.DvdBasketGetDTO;
 import com.dvdstore.second.services.BasketServiceModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -21,10 +22,10 @@ public interface BasketMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "totalPrice", ignore = true)
-    BasketServiceModel dtoToService(BasketDTO basketDTO);
+    BasketServiceModel basketDtoToBasketServiceModel(BasketDTO basketDTO);
 
     @Mapping(target = "id", ignore = true)
-    BasketRepositoryModelPostgreSQL serviceToRepository(BasketServiceModel basketServiceModel);
+    BasketRepositoryModelPostgreSQL BasketServiceModelToBasketRepositoryModelPostgreSQL(BasketServiceModel basketServiceModel);
 
     // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //            List<DTO>  ->  List<Service>  -->  List<Repository>
@@ -38,17 +39,18 @@ public interface BasketMapper {
     //                     Repository  ->  Service  -->  GetDTO
     // ------------------------------------------------------------------------------
 
-    BasketServiceModel repositoryToService(BasketRepositoryModelPostgreSQL basketRepositoryModelPostgreSQL);
+    BasketServiceModel BasketRepositoryModelPostgreSQLToBasketServiceModel(BasketRepositoryModelPostgreSQL basketRepositoryModelPostgreSQL);
 
-    BasketGetDTO serviceToGetDto(BasketServiceModel byId);
+    @Mapping(target = "dvds", source = "dvds")
+    BasketGetDTO BasketServiceModelToBasketGetDto(BasketServiceModel basketServiceModel, List<DvdBasketGetDTO> dvds);
 
     // ------------------------------------------------------------------------------
     //             List<Repository>  ->  List<Service>  -->  List<GetDTO>
     // ------------------------------------------------------------------------------
 
-    List<BasketServiceModel> listRepositoryToService(Iterable<BasketRepositoryModelPostgreSQL> all);
+    List<BasketServiceModel> listBasketRepositoryModelPostgreSQLToBasketServiceModel(Iterable<BasketRepositoryModelPostgreSQL> all);
 
-    List<BasketGetDTO> ListServiceToGetDto(List<BasketServiceModel> all);
+    List<BasketGetDTO> listBasketServiceModelToBasketGetDto(List<BasketServiceModel> all);
 
 
 
