@@ -1,35 +1,74 @@
 package com.simplon.dvdStore.services;
 
 
+import com.simplon.dvdStore.domain.ClientRepositoryModelSQL;
 import com.simplon.dvdStore.mapper.ClientMapper;
 import com.simplon.dvdStore.repositories.ClientRepository;
-import com.simplon.dvdStore.repositories.ClientRepositoryModelSQL;
-import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Client service.
+ */
 @Service
 public class ClientService {
+    private final ClientMapper clientMapper = ClientMapper.INSTANCE;
+    /**
+     * The Repository.
+     */
     @Autowired
     ClientRepository repository;
 
-    public void save(ClientServiceModel clientServiceModel, @Nullable Long id) {
-        ClientRepositoryModelSQL client = ClientMapper.INSTANCE.serviceToRepository(clientServiceModel);
-        if (id != null) client.setId(id);
+    /**
+     * Save.
+     *
+     * @param clientServiceModel the client service model
+     */
+    public ClientServiceModel save(ClientServiceModel clientServiceModel) {
+        return clientMapper.repositoryToService(repository.save(clientMapper.serviceToRepository(clientServiceModel)));
+    }
+
+    /**
+     * Update.
+     *
+     * @param clientServiceModel the client service model
+     * @param id                 the id
+     */
+    public void update(ClientServiceModel clientServiceModel, int id) {
+        ClientRepositoryModelSQL client = clientMapper.serviceToRepository(clientServiceModel);
+        client.setId(id);
         repository.save(client);
     }
 
-    public ClientServiceModel findById(long id) {
-        return ClientMapper.INSTANCE.repositoryToService(repository.findById(id).get());
+    /**
+     * Find by id client service model.
+     *
+     * @param id the id
+     * @return the client service model
+     */
+    public ClientServiceModel findById(int id) {
+        return clientMapper.repositoryToService(repository.findById(id).get());
     }
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<ClientServiceModel> findAll() {
-        return ClientMapper.INSTANCE.listRepositoryToService((List<ClientRepositoryModelSQL>) repository.findAll());
+        return clientMapper.listRepositoryToService((List<ClientRepositoryModelSQL>) repository.findAll());
     }
 
-    public void deleteById(long id) {
+    /**
+     * Delete by id.
+     *
+     * @param id the id
+     */
+    public void deleteById(int id) {
         repository.deleteById(id);
     }
+
+
 }

@@ -1,16 +1,19 @@
 package com.simplon.dvdStore.services;
 
-import com.simplon.dvdStore.Enum.Genre;
-import com.simplon.dvdStore.Enum.Type;
+import com.simplon.dvdStore.enums.Genre;
+import com.simplon.dvdStore.enums.Type;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
+/**
+ * The type Dvd service model.
+ */
 @Data
 @NoArgsConstructor
 public class DvdServiceModel {
-    private long id;
+    private int id;
     private String isan;
     private String title;
     private String directedBy;

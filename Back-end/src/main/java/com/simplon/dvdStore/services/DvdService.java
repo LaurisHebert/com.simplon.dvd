@@ -1,37 +1,72 @@
 package com.simplon.dvdStore.services;
 
 
+import com.simplon.dvdStore.domain.DvdRepositoryModelSQL;
 import com.simplon.dvdStore.mapper.DvdMapper;
 import com.simplon.dvdStore.repositories.DvdRepository;
-import com.simplon.dvdStore.repositories.DvdRepositoryModelSQL;
-import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * The type Dvd service.
+ */
 @Service
 public class DvdService {
     @Autowired
     private DvdRepository repository;
 
-    public void save(DvdServiceModel dvdServiceModel, @Nullable Long id) {
+    /**
+     * Save.
+     *
+     * @param dvdServiceModel the dvd service model
+     */
+    public void save(DvdServiceModel dvdServiceModel) {
+        repository.save(DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel));
+    }
+
+    /**
+     * Update.
+     *
+     * @param dvdServiceModel the dvd service model
+     * @param id              the id
+     */
+    public void update(DvdServiceModel dvdServiceModel, int id) {
         DvdRepositoryModelSQL dvdRepositoryModelSQL = DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel);
-        if (id != null) dvdRepositoryModelSQL.setId(id);
+        dvdRepositoryModelSQL.setId(id);
         repository.save(dvdRepositoryModelSQL);
     }
 
-    public DvdServiceModel findById(long id) {
+    /**
+     * Find by id dvd service model.
+     *
+     * @param id the id
+     * @return the dvd service model
+     */
+    public DvdServiceModel findById(int id) {
         if (repository.findById(id).isPresent())
             return DvdMapper.INSTANCE.dvdEntityToDvdService(repository.findById(id).get());
         else return null;
     }
 
+    /**
+     * Find all list.
+     *
+     * @return the list
+     */
     public List<DvdServiceModel> findAll() {
         return DvdMapper.INSTANCE.listDvdEntityToDvdService((List<DvdRepositoryModelSQL>) repository.findAll());
     }
 
-    public void deleteById(long id) {
+    /**
+     * Delete by id.
+     *
+     * @param id the id
+     */
+    public void deleteById(int id) {
         repository.deleteById(id);
     }
+
+
 }
