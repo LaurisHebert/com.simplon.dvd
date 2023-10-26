@@ -81,7 +81,9 @@ public class BasketService {
 
     public void deleteBasketByClientId(int clientId) {
         basketRepository.deleteByClientId(clientId);
+        deleteAllDvdBasketByClientId(clientId);
     }
+
     public void deleteDvdBasketByClientIdAndId(int clientId, int dvdBasketId) {
         if (basketRepository.findByClientId(clientId).isPresent()) {
             dvdBasketRepository.deleteById(dvdBasketId);

@@ -32,7 +32,7 @@ public class DvdService {
      * @param dvdServiceModel the dvd service model
      * @param id              the id
      */
-    public void update(DvdServiceModel dvdServiceModel, long id) {
+    public void update(DvdServiceModel dvdServiceModel, int id) {
         DvdRepositoryModelSQL dvdRepositoryModelSQL = DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel);
         dvdRepositoryModelSQL.setId(id);
         repository.save(dvdRepositoryModelSQL);
@@ -44,7 +44,7 @@ public class DvdService {
      * @param id the id
      * @return the dvd service model
      */
-    public DvdServiceModel findById(long id) {
+    public DvdServiceModel findById(int id) {
         if (repository.findById(id).isPresent())
             return DvdMapper.INSTANCE.dvdEntityToDvdService(repository.findById(id).get());
         else return null;
@@ -64,7 +64,7 @@ public class DvdService {
      *
      * @param id the id
      */
-    public void deleteById(long id) {
+    public void deleteById(int id) {
         repository.deleteById(id);
     }
 

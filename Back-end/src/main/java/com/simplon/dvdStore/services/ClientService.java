@@ -14,6 +14,7 @@ import java.util.List;
  */
 @Service
 public class ClientService {
+    private final ClientMapper clientMapper = ClientMapper.INSTANCE;
     /**
      * The Repository.
      */
@@ -25,8 +26,8 @@ public class ClientService {
      *
      * @param clientServiceModel the client service model
      */
-    public void save(ClientServiceModel clientServiceModel) {
-        repository.save(ClientMapper.INSTANCE.serviceToRepository(clientServiceModel));
+    public ClientServiceModel save(ClientServiceModel clientServiceModel) {
+        return clientMapper.repositoryToService(repository.save(clientMapper.serviceToRepository(clientServiceModel)));
     }
 
     /**
@@ -35,8 +36,8 @@ public class ClientService {
      * @param clientServiceModel the client service model
      * @param id                 the id
      */
-    public void update(ClientServiceModel clientServiceModel, long id) {
-        ClientRepositoryModelSQL client = ClientMapper.INSTANCE.serviceToRepository(clientServiceModel);
+    public void update(ClientServiceModel clientServiceModel, int id) {
+        ClientRepositoryModelSQL client = clientMapper.serviceToRepository(clientServiceModel);
         client.setId(id);
         repository.save(client);
     }
@@ -47,8 +48,8 @@ public class ClientService {
      * @param id the id
      * @return the client service model
      */
-    public ClientServiceModel findById(long id) {
-        return ClientMapper.INSTANCE.repositoryToService(repository.findById(id).get());
+    public ClientServiceModel findById(int id) {
+        return clientMapper.repositoryToService(repository.findById(id).get());
     }
 
     /**
@@ -57,7 +58,7 @@ public class ClientService {
      * @return the list
      */
     public List<ClientServiceModel> findAll() {
-        return ClientMapper.INSTANCE.listRepositoryToService((List<ClientRepositoryModelSQL>) repository.findAll());
+        return clientMapper.listRepositoryToService((List<ClientRepositoryModelSQL>) repository.findAll());
     }
 
     /**
@@ -65,7 +66,7 @@ public class ClientService {
      *
      * @param id the id
      */
-    public void deleteById(long id) {
+    public void deleteById(int id) {
         repository.deleteById(id);
     }
 

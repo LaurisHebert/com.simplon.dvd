@@ -12,21 +12,27 @@ import java.util.List;
 public interface BasketFeignClientRepository {
 
     @PostMapping()
-    void saveBasket(@RequestBody BasketFeignClientRepository basket);
+    void saveBasket(@RequestBody BasketDtoFeignClient basket);
+
     @PostMapping("{clientId}/Basket-dvds")
     void saveDvdBasketByClientId(@PathVariable("clientId") int clientId,
                                  @RequestBody DvdBasketDtoFeignClient dvdBasket);
+
     @GetMapping
     List<BasketGetDtoFeignClient> findAllBasket();
+
     @GetMapping("/{clientId}")
     BasketGetDtoFeignClient findBasketByClientId(@PathVariable("clientId") int clientId);
+
     @PutMapping("/{clientId}")
     void updateBasketByClientId(@PathVariable("clientId") int clientId,
                                 @RequestBody BasketDtoFeignClient basket);
+
     @PutMapping("/{clientId}/dvd-basket/{dvdBasketId}")
     void updateDvdBasketByClientId(@PathVariable("clientId") int clientId,
                                    @PathVariable("dvdBasketId") int dvdBasketId,
                                    @RequestBody DvdBasketDtoFeignClient dvdBasket);
+
     @DeleteMapping("/{clientId}")
     void deleteBasketByClientId(@PathVariable("clientId") int clientId);
 

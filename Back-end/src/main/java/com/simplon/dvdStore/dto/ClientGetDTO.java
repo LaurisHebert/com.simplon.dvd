@@ -12,7 +12,7 @@ public class ClientGetDTO {
     /**
      * The Id.
      */
-    Long id;
+    int id;
     /**
      * The Client reference.
      */

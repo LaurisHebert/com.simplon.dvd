@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class DvdBasketGetDtoFeignClient {
-    private Integer id;
-    private Integer dvdId;
-    private Integer quantity;
-    private Integer price;
+    private int id;
+    private int dvdId;
+    private int quantity;
+    private int price;
 }

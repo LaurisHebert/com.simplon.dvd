@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 public class DvdServiceModel {
-    private long id;
+    private int id;
     private String isan;
     private String title;
     private String directedBy;

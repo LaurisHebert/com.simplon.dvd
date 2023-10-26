@@ -8,8 +8,8 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class BasketGetDtoFeignClient {
-    private Integer id;
-    private Integer clientId;
-    private Integer totalPrice;
+    private int id;
+    private int clientId;
+    private int totalPrice;
     private List<DvdBasketGetDtoFeignClient> dvds;
 }

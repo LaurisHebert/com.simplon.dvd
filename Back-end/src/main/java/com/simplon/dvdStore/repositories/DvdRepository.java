@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * The interface Dvd repository.
  */
-public interface DvdRepository extends CrudRepository<DvdRepositoryModelSQL, Long> {
+public interface DvdRepository extends CrudRepository<DvdRepositoryModelSQL, Integer> {
 }

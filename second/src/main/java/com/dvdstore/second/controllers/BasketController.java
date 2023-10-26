@@ -27,12 +27,12 @@ public class BasketController {
     }
 
     @PostMapping("{clientId}/Basket-dvds")
-    public void saveDvdBasketByClientId(@PathVariable int clientId,@RequestBody DvdBasketDTO dvdBasketDTO) {
+    public void saveDvdBasketByClientId(@PathVariable int clientId, @RequestBody DvdBasketDTO dvdBasketDTO) {
         basketService.saveDvdBasketByClientId(clientId, dvdBasketMapper.dvdBasketDtoToDvdBasketServiceModel(dvdBasketDTO));
     }
 
     @GetMapping
-    public List<BasketGetDTO> findAllBasket(){
+    public List<BasketGetDTO> findAllBasket() {
         return basketMapper.listBasketServiceModelToBasketGetDto(basketService.findAllBasket());
     }
 
@@ -59,10 +59,12 @@ public class BasketController {
     public void deleteBasketByClientId(@PathVariable int clientId) {
         basketService.deleteBasketByClientId(clientId);
     }
+
     @DeleteMapping("/{clientId}/dvd-basket/{dvdBasketId}")
     public void deleteDvdBasketByClientIdAndId(@PathVariable int clientId, @PathVariable int dvdBasketId) {
         basketService.deleteDvdBasketByClientIdAndId(clientId, dvdBasketId);
     }
+
     @DeleteMapping("/{clientId}/dvd-basket")
     public void deleteAllDvdBasketByClientId(@PathVariable int clientId) {
         basketService.deleteAllDvdBasketByClientId(clientId);

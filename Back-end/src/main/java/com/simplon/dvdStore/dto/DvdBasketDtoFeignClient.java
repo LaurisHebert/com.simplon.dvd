@@ -1,4 +1,4 @@
 package com.simplon.dvdStore.dto;
 
-public record DvdBasketDtoFeignClient(Integer dvdId, Integer quantity, Integer price) {
+public record DvdBasketDtoFeignClient(int dvdId, int quantity, int price) {
 }
