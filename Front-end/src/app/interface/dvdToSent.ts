@@ -1,4 +1,4 @@
-export interface Dvd {
+export interface DvdToSent {
   id: number
   directedBy: string
   duration: number
@@ -6,7 +6,7 @@ export interface Dvd {
   genre: string
   isan: string
   quantity: number
-  releaseDate: Date
+  releaseDate: string
   resume: string
   title: string
   type: string

@@ -7,7 +7,9 @@ const routes: Routes = [
   {path: '', component: AdminDashboardComponent,
     children:
       [
-        {path: '', loadChildren: () => DvdModule},
+        {path: 'dvds', loadChildren: () => DvdModule},
+        {path: '', redirectTo: 'dvds', pathMatch: 'full'}
+
       ]
   }
 ];

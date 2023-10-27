@@ -38,6 +38,7 @@ public class DvdController {
 
     @PutMapping("{id}")
     public void update(@PathVariable int id, @RequestBody DvdDTO dvdDTO) {
+        System.out.println("lala");
         service.update(dvdMapper.dvdDTOToDvdService(dvdDTO), id);
     }
 

@@ -1,0 +1,25 @@
+<table class="table table-secondary table-striped table-bordered text-center">
+  <thead class="table-dark">
+  <tr>
+    <th>ISAN</th>
+    <th>Title</th>
+    <th>Release Date</th>
+    <th>Type</th>
+    <th>Genre</th>
+    <th>Quantity</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let dvd of dvds" (click)="openEditModal(dvd)">
+    <td>{{dvd.isan}}</td>
+    <td>{{dvd.title}}</td>
+    <td>{{dvd.releaseDate | date :'dd-MM-yyyy'}} </td>
+    <td>{{dvd.type}}</td>
+    <td>{{dvd.genre}}</td>
+    <td>{{dvd.quantity}}</td>
+  </tr>
+  </tbody>
+</table>
+<div class="position-relative">
+  <div class="sticky-bottom ">Add</div>
+</div>
