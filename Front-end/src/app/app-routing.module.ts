@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'admin', loadChildren: () => AdminModule},
   {path: 'dvds', component: DvdListComponent},
   {path: 'dvd/:id', component: DvdDetailComponent},
-  {path: '', redirectTo: 'dvds', pathMatch: 'full'}
+  {path: '', redirectTo: 'admin', pathMatch: 'full'}
 
 ];
 

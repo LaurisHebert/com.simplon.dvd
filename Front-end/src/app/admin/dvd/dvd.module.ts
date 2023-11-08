@@ -7,6 +7,7 @@ import { DvdRoutingModule } from './dvd-routing.module';
 import {AdminDvdListComponent} from "./dvd-list/admin-dvd-list.component";
 import { MatDialogModule } from '@angular/material/dialog';
 import {FormsModule} from "@angular/forms";
+import {IonicModule} from "@ionic/angular";
 
 
 
@@ -17,11 +18,12 @@ import {FormsModule} from "@angular/forms";
     AdminDvdEditComponent,
     AdminDvdListComponent
   ],
-  imports: [
-    CommonModule,
-    MatDialogModule,
-    DvdRoutingModule,
-    FormsModule,
-  ],
+    imports: [
+        CommonModule,
+        MatDialogModule,
+        DvdRoutingModule,
+        FormsModule,
+        IonicModule,
+    ],
 })
 export class DvdModule { }
