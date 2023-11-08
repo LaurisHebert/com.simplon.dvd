@@ -17,7 +17,7 @@ import java.time.LocalDate;
 public class ClientRepositoryModelSQL {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     @Column(nullable = false, name = "client_reference", unique = true)
     private String clientReference;
     @Column(nullable = false, name = "first_name")

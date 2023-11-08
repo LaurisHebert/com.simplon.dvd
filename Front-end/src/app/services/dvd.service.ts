@@ -62,7 +62,6 @@ export class DvdService {
         type: dvd.type
       }
 
-      console.log(dvdToSent)
       const response = await axios.put(this.apiUrl+"/"+dvd.id, dvdToSent)
       return response.data
     } catch (error) {

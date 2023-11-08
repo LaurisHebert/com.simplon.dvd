@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class DvdRepositoryModelSQL {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     @Column(name = "isan", unique = true, nullable = false)
     private String isan;
     @Column(name = "title", nullable = false)

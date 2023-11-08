@@ -53,7 +53,8 @@ public class SecurityConfigurer {
                 .addFilterBefore(securityFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated()
+                        .anyRequest().permitAll()
+                        //.anyRequest().authenticated()
                 );
         return http.build();
     }

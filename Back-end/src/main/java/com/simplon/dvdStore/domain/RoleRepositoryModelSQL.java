@@ -17,7 +17,7 @@ import org.springframework.security.core.GrantedAuthority;
 public class RoleRepositoryModelSQL implements GrantedAuthority {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @Column(nullable = false)
     private String name;
 
