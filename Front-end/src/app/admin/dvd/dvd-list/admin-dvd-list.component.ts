@@ -28,9 +28,20 @@ export class AdminDvdListComponent implements OnInit {
     const dialogRef = this.dialog.open(AdminDvdEditComponent, {
       data: dvd
     });
-
     dialogRef.afterClosed().subscribe(result => {
-      // Traitez le résultat ou effectuez des actions après la fermeture de la modal.
     });
   }
+  deleteDvdById ( dvd : Dvd) {
+    this.dvdApi.deleteDvdById(dvd.id)
+      .then(res => {
+        const indexInDvds = this.dvds.findIndex(item => item.id === dvd.id);
+        if (indexInDvds !== -1) {
+          this.dvds.splice(indexInDvds, 1);
+        }
+    })
+    .catch((error) => {
+      console.error(error.message)
+    });
+  }
+
 }

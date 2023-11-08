@@ -7,16 +7,20 @@
     <th>Type</th>
     <th>Genre</th>
     <th>Quantity</th>
+    <th>Modify</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let dvd of dvds" (click)="openEditModal(dvd)">
+  <tr *ngFor="let dvd of dvds">
     <td>{{dvd.isan}}</td>
     <td>{{dvd.title}}</td>
     <td>{{dvd.releaseDate | date :'dd-MM-yyyy'}} </td>
     <td>{{dvd.type}}</td>
     <td>{{dvd.genre}}</td>
     <td>{{dvd.quantity}}</td>
+    <td (click)="openEditModal(dvd)">O</td>
+    <td (click)="deleteDvdById(dvd)" >X</td>
   </tr>
   </tbody>
 </table>

@@ -14,6 +14,7 @@ export class ClientService {
       const response = await axios.get(this.apiUrl)
 
       const clients: Client[] = response.data.map((data: any) => ({
+        id : data.id,
         clientReference : data.clientReference,
         firstName : data.firstName,
         lastName : data.lastName,
@@ -28,6 +29,7 @@ export class ClientService {
     }
   }
 
+
   getDvdById = async (id: number) => {
     try {
       const response = await axios.get(this.apiUrl+"/"+id)
@@ -39,6 +41,13 @@ export class ClientService {
     }
   }
 
-
+  deleteClientById = async (id: number) => {
+    try {
+      const response = await axios.delete(this.apiUrl+"/"+id)
+      return response.data
+    } catch (error) {
+      throw new Error('Une erreur s\'est produite lors de la suppression du Client : ' + error);
+    }
+  }
 
 }

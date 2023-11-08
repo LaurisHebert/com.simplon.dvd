@@ -69,4 +69,13 @@ export class DvdService {
       throw new Error('Une erreur s\'est produite lors de la mise à jour du DVD : ' + error);
     }
   }
+
+  deleteDvdById = async (id: number) => {
+    try {
+      const response = await axios.delete(this.apiUrl+"/"+id)
+      return response.data
+    } catch (error) {
+      throw new Error('Une erreur s\'est produite lors de la suppression du DVD : ' + error);
+    }
+  }
 }

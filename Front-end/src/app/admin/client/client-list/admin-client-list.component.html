@@ -7,6 +7,8 @@
     <th>Email</th>
     <th>Favorite Genre</th>
     <th>Registration Date</th>
+    <th>Modify</th>
+    <th>Delete</th>
   </tr>
   </thead>
   <tbody>
@@ -17,6 +19,8 @@
     <td> {{client.email}}</td>
     <td> Movies</td>
     <td> {{client.registrationDate | date :'dd-MM-yyyy'}}</td>
+    <td>O</td>
+    <td (click)="deleteClientById(client)" >X</td>
   </tr>
   </tbody>
 </table>
