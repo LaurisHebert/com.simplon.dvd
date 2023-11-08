@@ -17,7 +17,7 @@ import java.util.List;
 public class OwnerRepositoryModelSQL implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     @Column(unique = true, length = 32)  // security : avoid conceptual duplicates to
     private String login;
     private String password;

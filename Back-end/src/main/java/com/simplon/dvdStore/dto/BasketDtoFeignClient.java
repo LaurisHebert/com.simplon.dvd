@@ -1,4 +1,4 @@
 package com.simplon.dvdStore.dto;
 
-public record BasketDtoFeignClient(Integer clientId) {
+public record BasketDtoFeignClient(int clientId) {
 }
