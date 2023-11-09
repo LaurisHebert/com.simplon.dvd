@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Client} from "../../../interface/client";
 import {ClientService} from "../../../services/client.service";
+import {MatDialog} from "@angular/material/dialog";
+import {AdminClientEditComponent} from "../client-edit/admin-client-edit.component";
 
 @Component({
   selector: 'app-client-list',
@@ -12,7 +14,7 @@ export class AdminClientListComponent implements OnInit {
   clients: Client[] = []
   errorMessage: string = ''
 
-  constructor(private clientApi: ClientService) {
+  constructor(private clientApi: ClientService, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -24,6 +26,21 @@ export class AdminClientListComponent implements OnInit {
         console.error(error.message)
         this.errorMessage = error
       });
+  }
+  openEditModal(client: Client) {
+    const dialogRef = this.dialog.open(AdminClientEditComponent, {
+      data: client
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+    });
+  }
+
+  openCreateModal() {
+    const dialogRef = this.dialog.open(AdminClientEditComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+    });
   }
 
   deleteClientById(client: Client) {

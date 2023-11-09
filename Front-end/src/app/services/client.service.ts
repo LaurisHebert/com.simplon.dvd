@@ -21,6 +21,7 @@ export class ClientService {
         clientReference: data.clientReference,
         firstName: data.firstName,
         lastName: data.lastName,
+        favoriteGenre : "ACTION",
         email: data.email,
         registrationDate: new Date(data.registrationDate),
       }))
@@ -41,6 +42,23 @@ export class ClientService {
 
     } catch (error) {
       throw new Error('Une erreur s\'est produite lors de la récupération du DVD : ' + error);
+    }
+  }
+
+  createClient = async (client: Client) => {
+    try {
+      const response = await axios.post(this.apiUrl, client)
+      return response.data
+    } catch (error) {
+      throw new Error('Une erreur s\'est produite lors de la création du Client : ' + error);
+    }
+  }
+  updateClient = async (client: Client) => {
+    try {
+      const response = await axios.put(this.apiUrl + "/" + client.id, client)
+      return response.data
+    } catch (error) {
+      throw new Error('Une erreur s\'est produite lors de la mise à jour du Client : ' + error);
     }
   }
 
