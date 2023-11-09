@@ -14,7 +14,7 @@ import java.util.Set;
 public class BasketRepositoryModelPostgreSQL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     @Column(name = "id_client")
     private Integer clientId;
     @Column(name = "total_price")

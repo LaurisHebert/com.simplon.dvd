@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Dvd} from "../../../interface/dvd";
-import {DvdService} from "../dvd.service";
+import {Dvd} from "../interface/dvd";
+import {DvdService} from "../services/dvd.service";
 
 @Component({
   selector: 'app-dvd-list',
@@ -11,7 +11,10 @@ export class DvdListComponent implements OnInit {
 
   dvds: Dvd[] = []
   errorMessage: string = ''
-  constructor(private dvdApi: DvdService) {}
+
+  constructor(private dvdApi: DvdService) {
+  }
+
   ngOnInit() {
     this.dvdApi.getAllDvds()
       .then(res => {

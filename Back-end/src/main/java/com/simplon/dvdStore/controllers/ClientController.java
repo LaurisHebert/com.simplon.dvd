@@ -3,7 +3,6 @@ package com.simplon.dvdStore.controllers;
 
 import com.simplon.dvdStore.dto.*;
 import com.simplon.dvdStore.mapper.ClientMapper;
-import com.simplon.dvdStore.repositories.BasketFeignClientRepository;
 import com.simplon.dvdStore.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,18 +21,16 @@ public class ClientController {
 
     @Autowired
     ClientService service;
-    @Autowired
-    BasketFeignClientRepository basket;
 
     @PostMapping
-    public void saveClient(@RequestBody ClientDTO clientDTO) {
-        ClientGetDTO client = clientMapper.serviceToGetDTO(service.save(clientMapper.dtoToService(clientDTO)));
-        basket.saveBasket(new BasketDtoFeignClient(client.getId()));
+    public boolean saveClient(@RequestBody ClientDTO clientDTO) {
+        service.save(clientMapper.dtoToService(clientDTO));
+        return true;
     }
 
     @PostMapping("{clientId}/basket/basket-dvds")
     public void saveDvdBasketByClientId(@PathVariable("clientId") int clientId, @RequestBody DvdBasketDtoFeignClient dvdBasket) {
-        basket.saveDvdBasketByClientId(clientId, dvdBasket);
+        service.saveDvdBasketByClientId(clientId, dvdBasket);
     }
 
     @GetMapping("/{clientId}")
@@ -43,7 +40,7 @@ public class ClientController {
 
     @GetMapping("{clientId}/basket")
     public BasketGetDtoFeignClient findBasketByClientId(@PathVariable("clientId") int clientId) {
-        return basket.findBasketByClientId(clientId);
+        return service.findBasketByClientId(clientId);
     }
 
     @GetMapping
@@ -53,7 +50,7 @@ public class ClientController {
 
     @GetMapping("basket")
     List<BasketGetDtoFeignClient> findAllBasket() {
-        return basket.findAllBasket();
+        return service.findAllBasket();
     }
 
     @PutMapping("{clientId}")
@@ -63,27 +60,27 @@ public class ClientController {
 
     @PutMapping("/{clientId}/basket")
     void updateBasketByClientId(@PathVariable("clientId") int clientId, @RequestBody BasketDtoFeignClient basketDto) {
-        basket.updateBasketByClientId(clientId, basketDto);
+        service.updateBasketByClientId(clientId, basketDto);
     }
 
     @PutMapping("/{clientId}/basket/dvd-basket/{dvdBasketId}")
     void updateDvdBasketByClientId(@PathVariable("clientId") int clientId, @PathVariable("dvdBasketId") int dvdBasketId, @RequestBody DvdBasketDtoFeignClient dvdBasket) {
-        basket.updateDvdBasketByClientId(clientId, dvdBasketId, dvdBasket);
+        service.updateDvdBasketByClientId(clientId, dvdBasketId, dvdBasket);
     }
 
     @DeleteMapping("{clientId}")
     public void deleteClientById(@PathVariable int clientId) {
         service.deleteById(clientId);
-        basket.deleteBasketByClientId(clientId);
+        service.deleteBasketByClientId(clientId);
     }
 
     @DeleteMapping("/{clientId}/basket/dvd-basket/{dvdBasketId}")
     void deleteDvdBasketByClientIdAndId(@PathVariable("clientId") int clientId, @PathVariable("dvdBasketId") int dvdBasketId) {
-        basket.deleteDvdBasketByClientIdAndId(clientId, dvdBasketId);
+        service.deleteDvdBasketByClientIdAndId(clientId, dvdBasketId);
     }
 
     @DeleteMapping("/{clientId}/basket/dvd-basket")
     void deleteAllDvdBasketByClientId(@PathVariable("clientId") int clientId) {
-        basket.deleteAllDvdBasketByClientId(clientId);
+        service.deleteAllDvdBasketByClientId(clientId);
     }
 }

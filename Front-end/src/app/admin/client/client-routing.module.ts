@@ -1,10 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {AdminDvdListComponent} from "./dvd-list/admin-dvd-list.component";
-
+import {AdminClientListComponent} from "./client-list/admin-client-list.component";
 
 const routes: Routes = [
-  {path: 'list', component: AdminDvdListComponent},
+  {path: 'list', component: AdminClientListComponent},
   {path: '', redirectTo: 'list', pathMatch: 'full'}
 ]
 
@@ -14,5 +13,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class DvdRoutingModule {
+export class ClientRoutingModule {
 }

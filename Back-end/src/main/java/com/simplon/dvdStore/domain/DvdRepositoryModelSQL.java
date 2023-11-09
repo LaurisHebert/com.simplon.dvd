@@ -27,9 +27,9 @@ public class DvdRepositoryModelSQL {
     @Column(name = "directed_by", nullable = false)
     private String directedBy;
     @Column(name = "duration", nullable = false)
-    private Integer duration;
+    private int duration;
     @Column(name = "quantity", nullable = false)
-    private Integer quantity;
+    private int quantity;
     @Column(name = "resume", nullable = false, columnDefinition = "TEXT")
     private String resume;
     @Column(name = "film_cover")

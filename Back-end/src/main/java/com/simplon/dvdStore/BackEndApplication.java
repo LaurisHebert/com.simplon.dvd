@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @SpringBootApplication
 @EnableFeignClients
-public class BackEndApplication {
+public class BackEndApplication{
     /**
      * The entry point of application.
      *
@@ -31,7 +31,9 @@ public class BackEndApplication {
     public class WebConfig implements WebMvcConfigurer {
         @Override
         public void addCorsMappings(CorsRegistry registry) {
-            registry.addMapping("/**");
+            registry.addMapping("/**")
+                    .allowedOrigins("http://localhost:4200") // Remplacez par l'URL de votre application frontend
+                    .allowedMethods("GET", "POST", "PUT", "DELETE");
         }
     }
 

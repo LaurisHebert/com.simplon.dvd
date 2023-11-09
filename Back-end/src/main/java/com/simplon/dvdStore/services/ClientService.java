@@ -2,7 +2,11 @@ package com.simplon.dvdStore.services;
 
 
 import com.simplon.dvdStore.domain.ClientRepositoryModelSQL;
+import com.simplon.dvdStore.dto.BasketDtoFeignClient;
+import com.simplon.dvdStore.dto.BasketGetDtoFeignClient;
+import com.simplon.dvdStore.dto.DvdBasketDtoFeignClient;
 import com.simplon.dvdStore.mapper.ClientMapper;
+import com.simplon.dvdStore.repositories.BasketFeignClientRepository;
 import com.simplon.dvdStore.repositories.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,14 +24,17 @@ public class ClientService {
      */
     @Autowired
     ClientRepository repository;
+      @Autowired
+      BasketFeignClientRepository basket;
 
     /**
      * Save.
      *
      * @param clientServiceModel the client service model
      */
-    public ClientServiceModel save(ClientServiceModel clientServiceModel) {
-        return clientMapper.repositoryToService(repository.save(clientMapper.serviceToRepository(clientServiceModel)));
+    public void save(ClientServiceModel clientServiceModel) {
+        ClientRepositoryModelSQL client = repository.save(clientMapper.serviceToRepository(clientServiceModel));
+        basket.saveBasket(new BasketDtoFeignClient(client.getId()));
     }
 
     /**
@@ -71,4 +78,35 @@ public class ClientService {
     }
 
 
+    public void updateBasketByClientId(int clientId, BasketDtoFeignClient basketDto) {
+        basket.updateBasketByClientId(clientId, basketDto);
+    }
+
+    public void updateDvdBasketByClientId(int clientId, int dvdBasketId, DvdBasketDtoFeignClient dvdBasket) {
+        basket.updateDvdBasketByClientId(clientId, dvdBasketId, dvdBasket);
+    }
+
+    public void deleteBasketByClientId(int clientId) {
+        basket.deleteBasketByClientId(clientId);
+    }
+
+    public void deleteDvdBasketByClientIdAndId(int clientId, int dvdBasketId) {
+        basket.deleteDvdBasketByClientIdAndId(clientId, dvdBasketId);
+    }
+
+    public void deleteAllDvdBasketByClientId(int clientId) {
+        basket.deleteAllDvdBasketByClientId(clientId);
+    }
+
+    public List<BasketGetDtoFeignClient> findAllBasket() {
+        return basket.findAllBasket();
+    }
+
+    public void saveDvdBasketByClientId(int clientId, DvdBasketDtoFeignClient dvdBasket) {
+        basket.saveDvdBasketByClientId(clientId, dvdBasket);
+    }
+
+    public BasketGetDtoFeignClient findBasketByClientId(int clientId) {
+        return basket.findBasketByClientId(clientId);
+    }
 }

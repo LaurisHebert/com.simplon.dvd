@@ -1,23 +1,27 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DvdListComponent } from './dvd-list/dvd-list.component';
-import { DvdCreateComponent } from './dvd-create/dvd-create.component';
-import { DvdDetailComponent } from './dvd-detail/dvd-detail.component';
-import { DvdEditComponent } from './dvd-edit/dvd-edit.component';
-import { DvdRoutingModule } from './dvd-routing.module';
-
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DvdDetailComponent} from '../../dvd-detail/dvd-detail.component';
+import {AdminDvdEditComponent} from './dvd-edit/admin-dvd-edit.component';
+import {DvdRoutingModule} from './dvd-routing.module';
+import {AdminDvdListComponent} from "./dvd-list/admin-dvd-list.component";
+import {MatDialogModule} from '@angular/material/dialog';
+import {FormsModule} from "@angular/forms";
+import {IonicModule} from "@ionic/angular";
 
 
 @NgModule({
   declarations: [
-    DvdListComponent,
-    DvdCreateComponent,
     DvdDetailComponent,
-    DvdEditComponent
+    AdminDvdEditComponent,
+    AdminDvdListComponent
   ],
   imports: [
     CommonModule,
-    DvdRoutingModule
+    MatDialogModule,
+    DvdRoutingModule,
+    FormsModule,
+    IonicModule,
   ],
 })
-export class DvdModule { }
+export class DvdModule {
+}

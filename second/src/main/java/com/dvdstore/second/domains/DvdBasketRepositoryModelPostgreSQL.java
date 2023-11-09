@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 public class DvdBasketRepositoryModelPostgreSQL {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     @Column(name = "id_dvd")
-    private Integer dvdId;
+    private int dvdId;
     @Column
-    private Integer quantity;
+    private int quantity;
     @Column
-    private Integer price;
+    private int price;
 
     @ManyToOne
     @JoinColumn(name = "id_basket")

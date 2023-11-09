@@ -1,0 +1,79 @@
+<form class="card card-body">
+
+  <h2 class="text-center" *ngIf="dvd.id == 0">Add DVD</h2>
+  <h2 class="text-center" *ngIf="dvd.id != 0">Edit DVD</h2>
+
+  <div class="form-group">
+    <label for="isan">ISAN:</label>
+    <input class="form-control" [(ngModel)]="dvd.isan" id="isan" name="isan" required type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="title">Title:</label>
+    <input class="form-control" [(ngModel)]="dvd.title" id="title" name="title" required type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="directedBy">Directed By:</label>
+    <input class="form-control" [(ngModel)]="dvd.directedBy" id="directedBy" name="directedBy" required type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="releaseDate">Release Date:</label>
+    <input class="form-control" [(ngModel)]="dvd.releaseDate" id="releaseDate" name="releaseDate" required type="date">
+  </div>
+
+  <div class="form-group">
+    <label for="type">Type:</label>
+    <select class="form-control" [(ngModel)]="dvd.type" id="type" name="type" required>
+      <option value="MOVIE">film</option>
+      <option value="SERIES">serie</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="genre">Genre:</label>
+    <select class="form-control" [(ngModel)]="dvd.genre" id="genre" name="genre" required>
+      <option value="ACTION">Action</option>
+      <option value="ADVENTURE">Adventure</option>
+      <option value="ANIMATION">Animation</option>
+      <option value="BIOGRAPHY">Biography</option>
+      <option value="COMEDY">Comedy</option>
+      <option value="CRIME">Crime</option>
+      <option value="DOCUMENTARY">Documentary</option>
+      <option value="DRAMA">Drama</option>
+      <option value="FAMILY">Family</option>
+      <option value="FANTASY">Fantasy</option>
+      <option value="FILM_NOIR">Film Noir</option>
+      <option value="HISTORY">History</option>
+      <option value="HORROR">Horror</option>
+      <option value="MUSICAL">Musical</option>
+      <option value="MYSTERY">Mystery</option>
+      <option value="ROMANCE">Romance</option>
+      <option value="SCIFI">Sci-Fi</option>
+      <option value="SPORT">Sport</option>
+      <option value="THRILLER">Thriller</option>
+      <option value="WAR">War</option>
+      <option value="WESTERN">Western</option>
+    </select>
+  </div>
+
+
+  <div class="form-group">
+    <label for="quantity">Quantity:</label>
+    <input class="form-control" [(ngModel)]="dvd.quantity" id="quantity" name="quantity" placeholder="{{dvd.quantity}}" required
+           type="number">
+  </div>
+
+  <div class="form-group">
+    <label for="filmCover">Film Cover:</label>
+    <input class="form-control" [(ngModel)]="dvd.filmCover" id="filmCover" name="filmCover" required type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="resume">Resume:</label>
+    <textarea class="form-control" [(ngModel)]="dvd.resume" id="resume" name="resume" required></textarea>
+  </div>
+
+  <button (click)="sendDvd()" type="submit">Submit</button>
+</form>

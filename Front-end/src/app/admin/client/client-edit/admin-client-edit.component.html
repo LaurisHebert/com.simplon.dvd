@@ -1,0 +1,61 @@
+<form class="card card-body form-control">
+  <h2 class="text-center" *ngIf="client.id == 0">Add Client</h2>
+  <h2 class="text-center" *ngIf="client.id != 0">Edit Client</h2>
+
+  <div class="form-group">
+    <label for="clientReference">Client Reference:</label>
+    <input class="form-control" [(ngModel)]="client.clientReference" id="clientReference" name="clientReference" required
+           type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input class="form-control" [(ngModel)]="client.firstName" id="firstName" name="firstName" required type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input class="form-control" [(ngModel)]="client.lastName" id="lastName" name="lastName" required type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input class="form-control" [(ngModel)]="client.email" id="email" name="email" required type="text">
+  </div>
+
+  <div class="form-group">
+    <label for="favoriteGenre">Favorite Genre:</label>
+    <select class="form-control" [(ngModel)]="client.favoriteGenre" id="favoriteGenre" name="favoriteGenre" required>
+      <option value="ACTION">Action</option>
+      <option value="ADVENTURE">Adventure</option>
+      <option value="ANIMATION">Animation</option>
+      <option value="BIOGRAPHY">Biography</option>
+      <option value="COMEDY">Comedy</option>
+      <option value="CRIME">Crime</option>
+      <option value="DOCUMENTARY">Documentary</option>
+      <option value="DRAMA">Drama</option>
+      <option value="FAMILY">Family</option>
+      <option value="FANTASY">Fantasy</option>
+      <option value="FILM_NOIR">Film Noir</option>
+      <option value="HISTORY">History</option>
+      <option value="HORROR">Horror</option>
+      <option value="MUSICAL">Musical</option>
+      <option value="MYSTERY">Mystery</option>
+      <option value="ROMANCE">Romance</option>
+      <option value="SCIFI">Sci-Fi</option>
+      <option value="SPORT">Sport</option>
+      <option value="THRILLER">Thriller</option>
+      <option value="WAR">War</option>
+      <option value="WESTERN">Western</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="registrationDate">Registration Date:</label>
+    <input class="form-control" [value]="client.registrationDate.toISOString().split('T')[0]" (change)="updateRegistrationDate($event)" id="registrationDate" name="registrationDate" required type="date">
+  </div>
+
+
+  <button type="submit" (click)="sendClient()">Submit</button>
+
+</form>
