@@ -22,8 +22,9 @@ public class DvdService {
      *
      * @param dvdServiceModel the dvd service model
      */
-    public void save(DvdServiceModel dvdServiceModel) {
+    public boolean save(DvdServiceModel dvdServiceModel) {
         repository.save(DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel));
+        return true;
     }
 
     /**
@@ -32,10 +33,11 @@ public class DvdService {
      * @param dvdServiceModel the dvd service model
      * @param id              the id
      */
-    public void update(DvdServiceModel dvdServiceModel, int id) {
+    public boolean update(DvdServiceModel dvdServiceModel, int id) {
         DvdRepositoryModelSQL dvdRepositoryModelSQL = DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel);
         dvdRepositoryModelSQL.setId(id);
         repository.save(dvdRepositoryModelSQL);
+        return true;
     }
 
     /**
@@ -64,8 +66,9 @@ public class DvdService {
      *
      * @param id the id
      */
-    public void deleteById(int id) {
+    public boolean deleteById(int id) {
         repository.deleteById(id);
+        return true;
     }
 
 
