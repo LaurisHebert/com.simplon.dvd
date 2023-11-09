@@ -19,8 +19,40 @@
     <td> {{client.email}}</td>
     <td> Movies</td>
     <td> {{client.registrationDate | date :'dd-MM-yyyy'}}</td>
-    <td>O</td>
-    <td (click)="deleteClientById(client)" >X</td>
+    <td>
+      <button>
+        <svg fill="none" height="25px" viewBox="0 0 48 48" width="25px" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_iconCarrier">
+            <rect fill="white" fill-opacity="0.01" height="48" width="48"></rect>
+            <path d="M42 26V40C42 41.1046 41.1046 42 40 42H8C6.89543 42 6 41.1046 6 40V8C6 6.89543 6.89543 6 8 6L22 6"
+                  stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"></path>
+            <path d="M14 26.7199V34H21.3172L42 13.3081L34.6951 6L14 26.7199Z" fill="#000000" stroke="#000000"
+                  stroke-linejoin="round" stroke-width="4"></path>
+          </g>
+        </svg>
+      </button>
+    </td>
+    <td (click)="deleteClientById(client)">
+      <button>
+        <svg fill="none" height="25px" viewBox="0 0 24 24" width="25px" xmlns="http://www.w3.org/2000/svg">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke="#CCCCCC" stroke-linecap="round" stroke-linejoin="round"
+             stroke-width="0.288"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path d="M10 11V17" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <path d="M14 11V17" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <path d="M4 7H20" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <path d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z" stroke="#000000"
+                  stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+            <path d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z" stroke="#000000"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" stroke-width="2"></path>
+          </g>
+        </svg>
+      </button>
+    </td>
   </tr>
   </tbody>
 </table>

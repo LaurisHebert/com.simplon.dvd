@@ -1,8 +1,5 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {DvdDetailComponent} from "../../dvd-detail/dvd-detail.component";
-import {AdminDvdCreateComponent} from "./dvd-create/admin-dvd-create.component";
-import {AdminDvdEditComponent} from "./dvd-edit/admin-dvd-edit.component";
 import {AdminDvdListComponent} from "./dvd-list/admin-dvd-list.component";
 
 

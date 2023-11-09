@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import { MatDialog } from "@angular/material/dialog";
-import { Client } from "../../../interface/client";
+import {Client} from "../../../interface/client";
 import {ClientService} from "../../../services/client.service";
-import {Dvd} from "../../../interface/dvd";
-import {AdminDvdEditComponent} from "../../dvd/dvd-edit/admin-dvd-edit.component";
+
 @Component({
   selector: 'app-client-list',
   templateUrl: './admin-client-list.component.html',
@@ -13,7 +11,10 @@ export class AdminClientListComponent implements OnInit {
 
   clients: Client[] = []
   errorMessage: string = ''
-  constructor(private clientApi: ClientService) {}
+
+  constructor(private clientApi: ClientService) {
+  }
+
   ngOnInit() {
     this.clientApi.getAllClients()
       .then(res => {
@@ -25,7 +26,7 @@ export class AdminClientListComponent implements OnInit {
       });
   }
 
-  deleteClientById ( client : Client) {
+  deleteClientById(client: Client) {
     this.clientApi.deleteClientById(client.id)
       .then(res => {
         const indexClient = this.clients.findIndex(item => item.id === client.id);

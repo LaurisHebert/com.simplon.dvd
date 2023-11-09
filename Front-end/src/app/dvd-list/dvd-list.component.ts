@@ -11,7 +11,10 @@ export class DvdListComponent implements OnInit {
 
   dvds: Dvd[] = []
   errorMessage: string = ''
-  constructor(private dvdApi: DvdService) {}
+
+  constructor(private dvdApi: DvdService) {
+  }
+
   ngOnInit() {
     this.dvdApi.getAllDvds()
       .then(res => {

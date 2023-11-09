@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Dvd} from "../interface/dvd";
 import {DvdToSent} from "../interface/dvdToSent";
 import axios from "axios";
@@ -8,21 +8,24 @@ import axios from "axios";
 })
 export class DvdService {
 
-  constructor() { }
   private apiUrl = "http://localhost:8080/dvds";
+
+  constructor() {
+  }
+
   getAllDvds = async () => {
     try {
       const response = await axios.get(this.apiUrl)
 
       const dvds: Dvd[] = response.data.map((data: any) => ({
-        id : data.id,
+        id: data.id,
         directedBy: data.directedBy,
         duration: data.duration,
         filmCover: data.filmCover,
         genre: data.genre,
         isan: data.isan,
         quantity: data.quantity,
-        releaseDate: new Date (data.releaseDate),
+        releaseDate: new Date(data.releaseDate),
         resume: data.resume,
         title: data.title,
         type: data.type
@@ -37,7 +40,7 @@ export class DvdService {
 
   getDvdById = async (id: number) => {
     try {
-      const response = await axios.get(this.apiUrl+"/"+id)
+      const response = await axios.get(this.apiUrl + "/" + id)
       const dvd: Dvd = response.data
       return dvd
 
@@ -46,9 +49,9 @@ export class DvdService {
     }
   }
 
-  updateDvd = async (dvd: Dvd) => {
+  createDvd = async (dvd: Dvd) => {
     try {
-    const dvdToSent : DvdToSent = {
+      const dvdToSent: DvdToSent = {
         id: dvd.id,
         directedBy: dvd.directedBy,
         duration: dvd.duration,
@@ -56,13 +59,35 @@ export class DvdService {
         genre: dvd.genre,
         isan: dvd.isan,
         quantity: dvd.quantity,
-        releaseDate: dvd.releaseDate.toLocaleDateString('fr-FR', { day: '2-digit', month: '2-digit', year: 'numeric' }),
+        releaseDate: dvd.releaseDate.toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit', year: 'numeric'}),
         resume: dvd.resume,
         title: dvd.title,
         type: dvd.type
       }
 
-      const response = await axios.put(this.apiUrl+"/"+dvd.id, dvdToSent)
+      console.log(dvdToSent)
+      const response = await axios.post(this.apiUrl, dvdToSent)
+      return response.data
+    } catch (error) {
+      throw new Error('Une erreur s\'est produite lors de la création du DVD : ' + error);
+    }
+  }
+  updateDvd = async (dvd: Dvd) => {
+    try {
+      const dvdToSent: DvdToSent = {
+        id: dvd.id,
+        directedBy: dvd.directedBy,
+        duration: dvd.duration,
+        filmCover: dvd.filmCover,
+        genre: dvd.genre,
+        isan: dvd.isan,
+        quantity: dvd.quantity,
+        releaseDate: dvd.releaseDate.toLocaleDateString('fr-FR', {day: '2-digit', month: '2-digit', year: 'numeric'}),
+        resume: dvd.resume,
+        title: dvd.title,
+        type: dvd.type
+      }
+      const response = await axios.put(this.apiUrl + "/" + dvd.id, dvdToSent)
       return response.data
     } catch (error) {
       throw new Error('Une erreur s\'est produite lors de la mise à jour du DVD : ' + error);
@@ -71,7 +96,7 @@ export class DvdService {
 
   deleteDvdById = async (id: number) => {
     try {
-      const response = await axios.delete(this.apiUrl+"/"+id)
+      const response = await axios.delete(this.apiUrl + "/" + id)
       return response.data
     } catch (error) {
       throw new Error('Une erreur s\'est produite lors de la suppression du DVD : ' + error);

@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { MatDialogModule, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { AdminDvdEditComponent } from './admin-dvd-edit.component';
-import { DvdService } from '../../../services/dvd.service';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {MAT_DIALOG_DATA, MatDialogModule} from '@angular/material/dialog';
+import {AdminDvdEditComponent} from './admin-dvd-edit.component';
+import {DvdService} from '../../../services/dvd.service';
 
 describe('AdminDvdEditComponent', () => {
   let component: AdminDvdEditComponent;
@@ -13,7 +13,7 @@ describe('AdminDvdEditComponent', () => {
       declarations: [AdminDvdEditComponent],
       providers: [
         DvdService,
-        { provide: MAT_DIALOG_DATA, useValue: {} }, // You can provide mock data here
+        {provide: MAT_DIALOG_DATA, useValue: {}}, // You can provide mock data here
       ],
       imports: [MatDialogModule],
     }).compileComponents();

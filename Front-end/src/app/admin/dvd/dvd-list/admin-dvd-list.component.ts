@@ -13,7 +13,10 @@ export class AdminDvdListComponent implements OnInit {
 
   dvds: Dvd[] = []
   errorMessage: string = ''
-  constructor(private dvdApi: DvdService,  private dialog: MatDialog) {}
+
+  constructor(private dvdApi: DvdService, private dialog: MatDialog) {
+  }
+
   ngOnInit() {
     this.dvdApi.getAllDvds()
       .then(res => {
@@ -24,24 +27,35 @@ export class AdminDvdListComponent implements OnInit {
         this.errorMessage = error
       });
   }
+
   openEditModal(dvd: Dvd) {
     const dialogRef = this.dialog.open(AdminDvdEditComponent, {
       data: dvd
     });
     dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
     });
   }
-  deleteDvdById ( dvd : Dvd) {
+
+  openCreateModal() {
+    const dialogRef = this.dialog.open(AdminDvdEditComponent, {});
+    dialogRef.afterClosed().subscribe(result => {
+      this.ngOnInit()
+
+    });
+  }
+
+  deleteDvdById(dvd: Dvd) {
     this.dvdApi.deleteDvdById(dvd.id)
       .then(res => {
         const indexInDvds = this.dvds.findIndex(item => item.id === dvd.id);
         if (indexInDvds !== -1) {
           this.dvds.splice(indexInDvds, 1);
         }
-    })
-    .catch((error) => {
-      console.error(error.message)
-    });
+      })
+      .catch((error) => {
+        console.error(error.message)
+      });
   }
 
 }

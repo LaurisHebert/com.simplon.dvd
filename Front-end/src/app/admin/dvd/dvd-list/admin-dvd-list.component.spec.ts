@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { DvdService } from '../../../services/dvd.service';
-import { AdminDvdListComponent } from './admin-dvd-list.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {MatDialogModule} from '@angular/material/dialog';
+import {HttpClientTestingModule} from '@angular/common/http/testing';
+import {DvdService} from '../../../services/dvd.service';
+import {AdminDvdListComponent} from './admin-dvd-list.component';
 
 describe('AdminDvdListComponent', () => {
   let component: AdminDvdListComponent;

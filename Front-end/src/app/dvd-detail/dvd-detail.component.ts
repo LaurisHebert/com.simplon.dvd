@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Dvd} from "../interface/dvd";
 import {DvdService} from "../services/dvd.service";
 
@@ -10,20 +10,23 @@ import {DvdService} from "../services/dvd.service";
 export class DvdDetailComponent {
 
   dvd: Dvd = {
-    id : 0,
-    directedBy : "",
-    duration : 0,
-    filmCover : "",
-    genre : "",
-    isan : "",
-    quantity : 0,
-    releaseDate : new Date(),
-    resume : "",
-    title : "",
-    type : ""
+    id: 0,
+    directedBy: "",
+    duration: 0,
+    filmCover: "",
+    genre: "",
+    isan: "",
+    quantity: 0,
+    releaseDate: new Date(),
+    resume: "",
+    title: "",
+    type: ""
   }
   errorMessage: string = ''
-  constructor(private dvdApi: DvdService) {}
+
+  constructor(private dvdApi: DvdService) {
+  }
+
   ngOnInit() {
     this.dvdApi.getDvdById(1)
       .then(res => {
