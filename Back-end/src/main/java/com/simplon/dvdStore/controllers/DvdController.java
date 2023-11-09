@@ -23,7 +23,6 @@ public class DvdController {
 
     @PostMapping
     public void save(@RequestBody DvdDTO dvdDTO) {
-        System.out.println(dvdDTO);
         service.save(dvdMapper.dvdDTOToDvdService(dvdDTO));
     }
 
