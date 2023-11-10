@@ -1,7 +1,7 @@
 // Karma configuration
 // Generated on Wed Nov 08 2023 12:42:00 GMT+0100 (GMT+01:00)
 
-module.exports = function(config) {
+module.exports = function (config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -20,18 +20,25 @@ module.exports = function(config) {
       'src/app/admin/**/*.ts',
       'src/app/admin/**/*.spec.ts',
       'src/app/admin/**/**/*.ts',
-      'src/app/admin/**/**/*.spec.ts'
+      'src/app/admin/**/**/*.spec.ts',
+      'src/app/admin/dvd/dvd-list/admin-dvd-list.component.ts',
+      'src/app/admin/dvd/dvd-list/admin-dvd-list.component.spec.ts'
     ],
 
 
     // list of files / patterns to exclude
-    exclude: [
-    ],
+    exclude: [],
 
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://www.npmjs.com/search?q=keywords:karma-preprocessor
     preprocessors: {
+      'src/app/**/*.ts': ['typescript'],
+      'src/app/**/*.spec.ts': ['typescript'],
+      'src/app/admin/**/*.ts': ['typescript'],
+      'src/app/admin/**/*.spec.ts': ['typescript'],
+      'src/app/admin/**/**/*.ts': ['typescript'],
+      'src/app/admin/**/**/*.spec.ts': ['typescript']
     },
 
 
@@ -60,7 +67,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://www.npmjs.com/search?q=keywords:karma-launcher
-    browsers: ['Safari'],
+    browsers: ['Chrome'],
 
 
     // Continuous Integration mode

@@ -24,8 +24,8 @@ public class ClientService {
      */
     @Autowired
     ClientRepository repository;
-      @Autowired
-      BasketFeignClientRepository basket;
+    @Autowired
+    BasketFeignClientRepository basket;
 
     /**
      * Save.

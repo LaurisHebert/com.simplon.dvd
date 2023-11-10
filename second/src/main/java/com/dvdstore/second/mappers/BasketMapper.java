@@ -53,7 +53,6 @@ public interface BasketMapper {
     List<BasketGetDTO> listBasketServiceModelToBasketGetDto(List<BasketServiceModel> all);
 
 
-
     // ------------------------------------------------------------------------------
     //                                    END
     // ------------------------------------------------------------------------------

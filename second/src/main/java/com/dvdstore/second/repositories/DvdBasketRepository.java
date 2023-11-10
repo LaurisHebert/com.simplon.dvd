@@ -11,6 +11,7 @@ import java.util.List;
 public interface DvdBasketRepository extends CrudRepository<DvdBasketRepositoryModelPostgreSQL, Integer> {
 
     List<DvdBasketRepositoryModelPostgreSQL> findAllByBasketId(BasketRepositoryModelPostgreSQL basketRepositoryModelPostgreSQL);
+
     void deleteAllByBasketId(BasketRepositoryModelPostgreSQL basketRepositoryModelPostgreSQL);
 
 }

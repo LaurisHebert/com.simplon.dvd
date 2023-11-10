@@ -27,6 +27,7 @@ export class AdminClientListComponent implements OnInit {
         this.errorMessage = error
       });
   }
+
   openEditModal(client: Client) {
     const dialogRef = this.dialog.open(AdminClientEditComponent, {
       data: client

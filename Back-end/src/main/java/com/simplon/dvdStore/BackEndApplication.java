@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  */
 @SpringBootApplication
 @EnableFeignClients
-public class BackEndApplication{
+public class BackEndApplication {
     /**
      * The entry point of application.
      *

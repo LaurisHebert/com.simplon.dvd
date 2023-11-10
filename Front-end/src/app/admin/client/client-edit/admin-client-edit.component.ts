@@ -9,7 +9,7 @@ import {ClientService} from "../../../services/client.service";
   styleUrls: ['./admin-client-edit.component.css']
 })
 export class AdminClientEditComponent implements OnInit {
-  client : Client = {
+  client: Client = {
     id: 0,
     clientReference: "",
     firstName: "",
@@ -18,7 +18,9 @@ export class AdminClientEditComponent implements OnInit {
     favoriteGenre: "ACTION",
     registrationDate: new Date()
   }
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Client, private clientApi: ClientService, private dialogRef : MatDialogRef<AdminClientEditComponent>) {}
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Client, private clientApi: ClientService, private dialogRef: MatDialogRef<AdminClientEditComponent>) {
+  }
 
   ngOnInit() {
     if (this.data) {
@@ -32,7 +34,7 @@ export class AdminClientEditComponent implements OnInit {
 
 
   sendClient() {
-    if (this.client.id >0) {
+    if (this.client.id > 0) {
       this.updateClient()
     } else {
       this.creatClient()

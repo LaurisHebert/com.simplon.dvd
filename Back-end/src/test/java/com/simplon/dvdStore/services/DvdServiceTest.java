@@ -6,18 +6,21 @@ import com.simplon.dvdStore.enums.Type;
 import com.simplon.dvdStore.mapper.DvdMapper;
 import com.simplon.dvdStore.repositories.DvdRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
+@RunWith(SpringRunner.class)
 class DvdServiceTest {
 
     @InjectMocks
@@ -27,7 +30,7 @@ class DvdServiceTest {
     private DvdRepository repository;
 
     @Test
-    void save() {
+    void saveTrue() {
         DvdServiceModel dvdServiceModel = createDvdServiceModel();
         DvdRepositoryModelSQL dvdRepositoryModelSQL = DvdMapper.INSTANCE.dvdServiceToDvdEntity(dvdServiceModel);
 

@@ -21,7 +21,7 @@ export class ClientService {
         clientReference: data.clientReference,
         firstName: data.firstName,
         lastName: data.lastName,
-        favoriteGenre : "ACTION",
+        favoriteGenre: "ACTION",
         email: data.email,
         registrationDate: new Date(data.registrationDate),
       }))

@@ -26,23 +26,23 @@ public class BasketService {
         basketRepository.save(basketMapper.BasketServiceModelToBasketRepositoryModelPostgreSQL(basketServiceModel));
     }
 
-    public void saveDvdBasketByClientId( int clientId, DvdBasketServiceModel dvdBasketServiceModel) {
+    public void saveDvdBasketByClientId(int clientId, DvdBasketServiceModel dvdBasketServiceModel) {
         if (basketRepository.findByClientId(clientId).isPresent()) {
             dvdBasketRepository.save(dvdBasketMapper.dvdBasketServiceModelToDvdBasketRepositoryModelPostgreSQL(dvdBasketServiceModel, basketRepository.findByClientId(clientId).get()));
-        }else {
+        } else {
             System.out.println("basket does not exist");
         }
     }
 
-    public List<BasketServiceModel> findAllBasket(){
+    public List<BasketServiceModel> findAllBasket() {
         return basketMapper.listBasketRepositoryModelPostgreSQLToBasketServiceModel(basketRepository.findAll());
     }
 
-    public BasketServiceModel findBasketByClientId( int clientId) {
-            return basketMapper.BasketRepositoryModelPostgreSQLToBasketServiceModel(basketRepository.findByClientId(clientId).orElse(null));
+    public BasketServiceModel findBasketByClientId(int clientId) {
+        return basketMapper.BasketRepositoryModelPostgreSQLToBasketServiceModel(basketRepository.findByClientId(clientId).orElse(null));
     }
 
-    public List<DvdBasketServiceModel> findAllDvdBasketByClientId( int clientId) {
+    public List<DvdBasketServiceModel> findAllDvdBasketByClientId(int clientId) {
         if (basketRepository.findByClientId(clientId).isPresent()) {
             return dvdBasketMapper.listDvdBasketRepositoryModelPostgreSQLToDvdServiceModel(dvdBasketRepository.findAllByBasketId(basketRepository.findByClientId(clientId).get()));
         }
@@ -55,7 +55,7 @@ public class BasketService {
             BasketRepositoryModelPostgreSQL newBasket = basketMapper.BasketServiceModelToBasketRepositoryModelPostgreSQL(basketServiceModel);
             newBasket.setId(oldBasket.getId());
             basketRepository.save(newBasket);
-        }else {
+        } else {
             System.out.println("basket does not exist");
         }
     }
@@ -64,7 +64,7 @@ public class BasketService {
         if (basketRepository.findByClientId(clientId).isPresent()) {
             BasketRepositoryModelPostgreSQL basket = basketRepository.findByClientId(clientId).get();
 
-            if (dvdBasketRepository.findById(dvdBasketId).isPresent()){
+            if (dvdBasketRepository.findById(dvdBasketId).isPresent()) {
 
                 DvdBasketRepositoryModelPostgreSQL oldDvdBasket = dvdBasketRepository.findById(dvdBasketId).get();
                 DvdBasketRepositoryModelPostgreSQL newDvdBasket = dvdBasketMapper.dvdBasketServiceModelToDvdBasketRepositoryModelPostgreSQL(dvdBasketServiceModel, basket);
@@ -74,7 +74,7 @@ public class BasketService {
                 dvdBasketRepository.save(newDvdBasket);
             }
 
-        }else {
+        } else {
             System.out.println("basket does not exist");
         }
     }
@@ -89,6 +89,7 @@ public class BasketService {
             dvdBasketRepository.deleteById(dvdBasketId);
         }
     }
+
     public void deleteAllDvdBasketByClientId(int clientId) {
         if (basketRepository.findByClientId(clientId).isPresent()) {
             dvdBasketRepository.deleteAllByBasketId(basketRepository.findByClientId(clientId).get());

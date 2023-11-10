@@ -1,31 +1,31 @@
 <form class="card card-body">
 
-  <h2 class="text-center" *ngIf="dvd.id == 0">Add DVD</h2>
-  <h2 class="text-center" *ngIf="dvd.id != 0">Edit DVD</h2>
+  <h2 *ngIf="dvd.id == 0" class="text-center">Add DVD</h2>
+  <h2 *ngIf="dvd.id != 0" class="text-center">Edit DVD</h2>
 
   <div class="form-group">
     <label for="isan">ISAN:</label>
-    <input class="form-control" [(ngModel)]="dvd.isan" id="isan" name="isan" required type="text">
+    <input [(ngModel)]="dvd.isan" class="form-control" id="isan" name="isan" required type="text">
   </div>
 
   <div class="form-group">
     <label for="title">Title:</label>
-    <input class="form-control" [(ngModel)]="dvd.title" id="title" name="title" required type="text">
+    <input [(ngModel)]="dvd.title" class="form-control" id="title" name="title" required type="text">
   </div>
 
   <div class="form-group">
     <label for="directedBy">Directed By:</label>
-    <input class="form-control" [(ngModel)]="dvd.directedBy" id="directedBy" name="directedBy" required type="text">
+    <input [(ngModel)]="dvd.directedBy" class="form-control" id="directedBy" name="directedBy" required type="text">
   </div>
 
   <div class="form-group">
     <label for="releaseDate">Release Date:</label>
-    <input class="form-control" [(ngModel)]="dvd.releaseDate" id="releaseDate" name="releaseDate" required type="date">
+    <input [(ngModel)]="dvd.releaseDate" class="form-control" id="releaseDate" name="releaseDate" required type="date">
   </div>
 
   <div class="form-group">
     <label for="type">Type:</label>
-    <select class="form-control" [(ngModel)]="dvd.type" id="type" name="type" required>
+    <select [(ngModel)]="dvd.type" class="form-control" id="type" name="type" required>
       <option value="MOVIE">film</option>
       <option value="SERIES">serie</option>
     </select>
@@ -33,7 +33,7 @@
 
   <div class="form-group">
     <label for="genre">Genre:</label>
-    <select class="form-control" [(ngModel)]="dvd.genre" id="genre" name="genre" required>
+    <select [(ngModel)]="dvd.genre" class="form-control" id="genre" name="genre" required>
       <option value="ACTION">Action</option>
       <option value="ADVENTURE">Adventure</option>
       <option value="ANIMATION">Animation</option>
@@ -61,18 +61,19 @@
 
   <div class="form-group">
     <label for="quantity">Quantity:</label>
-    <input class="form-control" [(ngModel)]="dvd.quantity" id="quantity" name="quantity" placeholder="{{dvd.quantity}}" required
+    <input [(ngModel)]="dvd.quantity" class="form-control" id="quantity" name="quantity" placeholder="{{dvd.quantity}}"
+           required
            type="number">
   </div>
 
   <div class="form-group">
     <label for="filmCover">Film Cover:</label>
-    <input class="form-control" [(ngModel)]="dvd.filmCover" id="filmCover" name="filmCover" required type="text">
+    <input [(ngModel)]="dvd.filmCover" class="form-control" id="filmCover" name="filmCover" required type="text">
   </div>
 
   <div class="form-group">
     <label for="resume">Resume:</label>
-    <textarea class="form-control" [(ngModel)]="dvd.resume" id="resume" name="resume" required></textarea>
+    <textarea [(ngModel)]="dvd.resume" class="form-control" id="resume" name="resume" required></textarea>
   </div>
 
   <button (click)="sendDvd()" type="submit">Submit</button>

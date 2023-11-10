@@ -52,8 +52,8 @@ public class SecurityConfigurer {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 .addFilterBefore(securityFilter(), UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/auth/**").permitAll()
-                        .anyRequest().permitAll()
+                                .requestMatchers("/auth/**").permitAll()
+                                .anyRequest().permitAll()
                         //.anyRequest().authenticated()
                 );
         return http.build();

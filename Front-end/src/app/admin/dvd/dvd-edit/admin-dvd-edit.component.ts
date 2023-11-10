@@ -23,7 +23,7 @@ export class AdminDvdEditComponent implements OnInit {
     type: "MOVIE"
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Dvd, private dvdApi: DvdService, private dialogRef : MatDialogRef<AdminDvdEditComponent>) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Dvd, private dvdApi: DvdService, private dialogRef: MatDialogRef<AdminDvdEditComponent>) {
   }
 
   ngOnInit() {
@@ -33,7 +33,7 @@ export class AdminDvdEditComponent implements OnInit {
   }
 
   sendDvd() {
-    if (this.dvd.id >0) {
+    if (this.dvd.id > 0) {
       this.updateDvd()
     } else {
       this.creatDvd()
